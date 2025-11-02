@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Credit;
 use App\Models\Subject;
-use Illuminate\Support\Facades\Log;
 use App\Models\Teacher;
-use App\Models\ClassModel; // Ensure we use the correct Class model
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use App\Models\Department;
 
 class AddSubjectController extends Controller
 {
@@ -16,11 +17,12 @@ class AddSubjectController extends Controller
      */
     public function index()
     {
-        $classes = ClassModel::select('id', 'class_name', 'section')->get();
+        $departments = Department::all();
         $teachers = Teacher::select('id', 'name', 'email')->get();
-        $subjects = Subject::with(['class', 'teacher'])->get();
+        $subjects = Subject::with(['teacher', 'credit'])->get();
+        $credits = Credit::all();
 
-        return view('admin.layouts.addsubject', compact('classes', 'teachers', 'subjects'));
+        return view('admin.layouts.addsubject', compact('subjects', 'credits', 'teachers', 'departments'));
     }
 
     /**
@@ -28,30 +30,15 @@ class AddSubjectController extends Controller
      */
     public function store(Request $request)
     {
-
-        // Log request data for debugging
         Log::info('Subject Form Data:', $request->all());
 
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'class_id' => 'required|exists:classes,id',
-            'teacher_id' => 'required|exists:teachers,id',
-        ]);
-
-        // Ensure the subject is unique for that class-section
-        $existingSubject = Subject::where('name', $request->name)
-            ->where('class_id', $request->class_id)
-            ->first();
-
-        if ($existingSubject) {
-            return back()->withErrors(['error' => 'This subject is already assigned to this class and section.'])->withInput();
-        }
-
-        // Create Subject with assigned Teacher
         $subject = Subject::create([
             'name' => $request->name,
-            'class_id' => $request->class_id,
-            'teacher_id' => $request->teacher_id, // Ensure teacher ID is passed
+            'subject_code' => $request->subject_code,
+            'year' => $request->year,
+            'credit_id' => $request->credit_id,
+            'teacher_id' => $request->teacher_id,
+            'department_id' => $request->department_id,
         ]);
 
         Log::info('New Subject Created:', $subject->toArray());
@@ -59,16 +46,16 @@ class AddSubjectController extends Controller
         return redirect()->route('subjects.index')->with('success', 'Subject and teacher assigned successfully.');
     }
 
-
     /**
      * Show the edit form for a subject.
      */
     public function edit($id)
     {
         $subject = Subject::findOrFail($id);
-        $classes = ClassModel::select('id', 'class_name', 'section')->get();
+        $teachers = Teacher::select('id', 'name', 'email')->get();
+        $credits = Credit::all();
 
-        return view('admin.layouts.edit_subject', compact('subject', 'classes'));
+        return view('admin.layouts.edit_subject', compact('subject', 'teachers', 'credits'));
     }
 
     /**
@@ -78,24 +65,13 @@ class AddSubjectController extends Controller
     {
         $subject = Subject::findOrFail($id);
 
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'class_id' => 'required|exists:classes,id',
-        ]);
-
-        // Ensure the subject remains unique per class-section
-        $existingSubject = Subject::where('name', $request->name)
-            ->where('class_id', $request->class_id)
-            ->where('id', '!=', $id)
-            ->first();
-
-        if ($existingSubject) {
-            return back()->withErrors(['error' => 'This subject is already assigned to this class and section.'])->withInput();
-        }
-
         $subject->update([
             'name' => $request->name,
-            'class_id' => $request->class_id,
+            'subject_code' => $request->subject_code,
+            'year' => $request->year,
+            'teacher_id' => $request->teacher_id,
+            'credit_id' => $request->credit_id,
+            'department_id' => $request->department_id,
         ]);
 
         return redirect()->route('subjects.index')->with('success', 'Subject updated successfully.');
@@ -113,28 +89,49 @@ class AddSubjectController extends Controller
     }
 
     /**
-     * AJAX Filter: Fetch subjects based on selected class-section.
+     * AJAX Filter: Fetch subjects based on multiple criteria.
      */
     public function filterSubjects(Request $request)
     {
-        $classId = $request->query('class_id');
+        $searchTerm = $request->query('search');
+        $yearValue = $request->query('year');
+        $creditId = $request->query('credit_id');
+        $departmentId = $request->query('department_id');
 
-        if ($classId) {
-            $subjects = Subject::where('class_id', $classId)
-                ->with(['class', 'teacher']) // ✅ Ensure teacher relationship is included
-                ->get();
-        } else {
-            $subjects = Subject::with(['class', 'teacher'])->get();
+        $subjects = Subject::query();
+
+        // Search by subject name
+        if ($searchTerm) {
+            $subjects->where('name', 'like', '%' . $searchTerm . '%');
         }
 
-        // ✅ Ensure the teacher's name is included in the response
+        // Filter by year
+        if ($yearValue) {
+            $subjects->where('year', $yearValue);
+        }
+
+        // Filter by credit type
+        if ($creditId) {
+            $subjects->where('credit_id', $creditId);
+        }
+
+        // Filter by department
+        if ($departmentId) {
+            $subjects->where('department_id', $departmentId);
+        }
+
+        $subjects = $subjects->with(['teacher', 'credit', 'department'])->get();
+
         return response()->json($subjects->map(function ($subject) {
             return [
                 'id' => $subject->id,
                 'name' => $subject->name,
-                'class_name' => $subject->class->class_name ?? 'Not Assigned',
-                'section' => $subject->class->section ?? 'Not Assigned',
-                'teacher_name' => $subject->teacher->name ?? 'No Teacher Assigned', // ✅ Ensure teacher name is included
+                'subject_code' => $subject->subject_code,
+                'year' => $subject->year ?? 'N/A',
+                'department_name' => $subject->department->name ?? 'N/A',
+                'subject_type' => $subject->credit->subject_type ?? 'N/A',
+                'credit_hour' => $subject->credit->credit_hour ?? 'N/A',
+                'teacher_name' => $subject->teacher->name ?? 'No Teacher Assigned',
             ];
         }));
     }

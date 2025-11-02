@@ -1,45 +1,57 @@
 <?php
 
-use App\Http\Controllers\Admin\Auth\AddExamScheduleController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\Auth\ClassController;
+use App\Http\Controllers\Admin\Auth\GradeController;
+use App\Http\Controllers\Teacher\Auth\ExamController;
+use App\Http\Controllers\Teacher\Auth\MarkController;
+use App\Http\Controllers\Teacher\Auth\NoticeController;
+use App\Http\Controllers\Teacher\Auth\MessageController;
+use App\Http\Controllers\Teacher\Auth\RemarksController;
+use App\Http\Controllers\Teacher\Auth\RoutineController;
 use App\Http\Controllers\Admin\Auth\AddStudentController;
 use App\Http\Controllers\Admin\Auth\AddSubjectController;
 use App\Http\Controllers\Admin\Auth\AddTeacherController;
+use App\Http\Controllers\Admin\Auth\CreditPerYearController;
 use App\Http\Controllers\Admin\Auth\AllStudentController;
 use App\Http\Controllers\Admin\Auth\AllTeacherController;
-use App\Http\Controllers\Admin\Auth\ClassController;
+use App\Http\Controllers\Admin\Auth\DepartmentController;
+use App\Http\Controllers\Teacher\Auth\ProgressController;
+use App\Http\Controllers\Teacher\Auth\ResourceController;
+use App\Http\Controllers\Teacher\Auth\ClassListController;
+use App\Http\Controllers\Teacher\Auth\GradebookController;
 use App\Http\Controllers\Admin\Auth\ClassRoutineController;
-use App\Http\Controllers\Admin\Auth\GradeController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Student\Auth\FullCalenderController;
-use App\Http\Controllers\Student\Auth\StudentClassRoutineController;
-use App\Http\Controllers\Student\Auth\StudentDashboardController;
-use App\Http\Controllers\Student\Auth\StudentExamController;
-use App\Http\Controllers\Student\Auth\StudentLibraryController;
-use App\Http\Controllers\Student\Auth\StudentMarksController;
-use App\Http\Controllers\Student\Auth\StudentNoticeController;
-use App\Http\Controllers\Student\Auth\StudentProfileController;
-use App\Http\Controllers\Student\Auth\StudentSubjectController;
-use App\Http\Controllers\Student\GpaController; // Import GpaController
-use App\Http\Controllers\Teacher\Auth\AnnouncementController;
+use App\Http\Controllers\Admin\Auth\PrerequisiteController;
 use App\Http\Controllers\Teacher\Auth\AssignmentController;
 use App\Http\Controllers\Teacher\Auth\AttendanceController;
-use App\Http\Controllers\Teacher\Auth\ClassListController;
-use App\Http\Controllers\Teacher\Auth\ExamController;
-use App\Http\Controllers\Teacher\Auth\GradebookController;
-use App\Http\Controllers\Teacher\Auth\MarkController;
-use App\Http\Controllers\Teacher\Auth\MessageController;
-use App\Http\Controllers\Teacher\Auth\NoticeController;
-use App\Http\Controllers\Teacher\Auth\ProgressController;
-use App\Http\Controllers\Teacher\Auth\RemarksController;
-use App\Http\Controllers\Teacher\Auth\ResourceController;
-use App\Http\Controllers\Teacher\Auth\RoutineController;
+use App\Http\Controllers\Student\Auth\StudentExamController;
 use App\Http\Controllers\Teacher\Auth\StudentListController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\Auth\CourseOfferingController;
+use App\Http\Controllers\Admin\Auth\CourseOverviewController;
+use App\Http\Controllers\Student\Auth\FullCalenderController;
+use App\Http\Controllers\Student\Auth\StudentMarksController;
+use App\Http\Controllers\Teacher\Auth\AnnouncementController;
+use App\Http\Controllers\Admin\Auth\AddExamScheduleController;
+use App\Http\Controllers\Student\Auth\StudentNoticeController;
+use App\Http\Controllers\Student\Auth\OfferedCoursesController;
+use App\Http\Controllers\Student\Auth\StudentLibraryController;
+use App\Http\Controllers\Student\Auth\StudentCourseOverviewController;
+use App\Http\Controllers\Student\Auth\StudentProfileController;
+use App\Http\Controllers\Student\Auth\StudentSubjectController;
+use App\Http\Controllers\Admin\Auth\CourseDistributionController;
+use App\Http\Controllers\Admin\Auth\CreditDistributionController;
+use App\Http\Controllers\Student\Auth\StudentDashboardController;
+use App\Http\Controllers\Student\Auth\StudentClassRoutineController;
+use App\Http\Controllers\Student\GpaController; // Import GpaController
 
 
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/userlogin', function () {
+    return view('userlogin'); // Replace 'userlogin' with the actual view name if different
+})->name('userlogin');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -83,6 +95,49 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::delete('/subjects/{subject}', [AddSubjectController::class, 'destroy'])->name('subjects.destroy');
     Route::get('/subjects/filter', [AddSubjectController::class, 'filterSubjects'])->name('subjects.filter');
 
+    // Prerequisite Routes
+    Route::get('/prerequisite', [PrerequisiteController::class, 'index'])->name('prerequisite.index');
+    Route::post('/prerequisite', [PrerequisiteController::class, 'store'])->name('prerequisite.store');
+    Route::put('/prerequisite/{id}', [PrerequisiteController::class, 'update'])->name('prerequisite.update');
+    Route::delete('/prerequisite/{id}', [PrerequisiteController::class, 'destroy'])->name('prerequisite.destroy');
+
+    // Course Overview Routes
+    Route::get('/courseoverview', [CourseOverviewController::class, 'index'])->name('courseoverview.index');
+    Route::post('/courseoverview', [CourseOverviewController::class, 'store'])->name('courseoverview.store');
+    Route::get('/courseoverview/{id}/edit', [CourseOverviewController::class, 'edit'])->name('courseoverview.edit');
+    Route::put('/courseoverview/{id}', [CourseOverviewController::class, 'update'])->name('courseoverview.update');
+    Route::delete('/courseoverview/{id}', [CourseOverviewController::class, 'destroy'])->name('courseoverview.destroy');
+    Route::delete('/courseoverview/{id}/drop', [CourseOverviewController::class, 'drop'])->name('courseoverview.drop');
+
+    // Course Offering Routes
+    Route::get('/courseoffering', [CourseOfferingController::class, 'index'])->name('courseoffering.index');
+    Route::post('/courseoffering', [CourseOfferingController::class, 'store'])->name('courseoffering.store');
+    Route::post('/courseoffering/offer-to-class', [CourseOfferingController::class, 'offerToClass'])->name('courseoffering.offerToClass');
+    Route::get('/courseoffering/{id}/edit', [CourseOfferingController::class, 'edit'])->name('courseoffering.edit');
+    Route::put('/courseoffering/{id}', [CourseOfferingController::class, 'update'])->name('courseoffering.update');
+    Route::get('/courseoffering/{id}/subjects', [CourseOfferingController::class, 'getSubjects'])->name('courseoffering.subjects');
+    Route::get('/courseoffering/selected', [CourseOfferingController::class, 'selected'])->name('courseoffering.selected');
+    Route::put('/courseoffering/selected/{id}', [CourseOfferingController::class, 'updateOffering'])->name('courseoffering.selected.update');
+    Route::delete('/courseoffering/selected/{id}', [CourseOfferingController::class, 'deleteOffering'])->name('courseoffering.selected.delete');
+    Route::delete('/courseoffering/selected', [CourseOfferingController::class, 'clearAll'])->name('courseoffering.selected.clear');
+
+    Route::delete('/courseoffering/{id}', [CourseOfferingController::class, 'destroy'])->name('courseoffering.destroy');
+
+    // Credit Ditribution Routes
+    Route::get('/creditdistribution', [CreditDistributionController::class, 'index'])->name('creditdistribution.index');
+    Route::post('/creditdistribution', [CreditDistributionController::class, 'store'])->name('creditdistribution.store');
+    Route::get('/creditdistribution/{id}/edit', [CreditDistributionController::class, 'edit'])->name('creditdistribution.edit');
+    Route::put('/creditdistribution/{id}', [CreditDistributionController::class, 'update'])->name('creditdistribution.update');
+    Route::delete('/creditdistribution/{id}', [CreditDistributionController::class, 'destroy'])->name('creditdistribution.destroy');
+    Route::post('/creditdistribution/filter-subjects', [CreditDistributionController::class, 'filterSubjects'])->name('creditdistribution.filterSubjects');
+
+    // Course Distribution Routes
+    Route::get('/coursedistribution', [CourseDistributionController::class, 'index'])->name('coursedistribution.index');
+    Route::post('/coursedistribution', [CourseDistributionController::class, 'store'])->name('coursedistribution.store');
+    Route::get('/coursedistribution/{id}/edit', [CourseDistributionController::class, 'edit'])->name('coursedistribution.edit');
+    Route::put('/coursedistribution/{id}', [CourseDistributionController::class, 'update'])->name('coursedistribution.update');
+    Route::delete('/coursedistribution/{id}', [CourseDistributionController::class, 'destroy'])->name('coursedistribution.destroy');
+
     // Class Routes
     Route::get('/classes', [ClassController::class, 'index'])->name('classes.index');
     Route::get('/classes/add', [ClassController::class, 'create'])->name('classes.create');
@@ -99,6 +154,13 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::put('/classroutines/update/{id}', [ClassRoutineController::class, 'update'])->name('classroutines.update');
     Route::delete('/classroutines/delete/{id}', [ClassRoutineController::class, 'destroy'])->name('classroutines.destroy');
     Route::get('/classroutines/get-subjects', [ClassRoutineController::class, 'getSubjectsByClass'])->name('classroutines.get-subjects');
+
+    // Department Routes
+    Route::get('/departments', [DepartmentController::class, 'index'])->name('departments.index');
+    Route::get('/departments/create', [DepartmentController::class, 'create'])->name('departments.create');
+    Route::post('/departments', [DepartmentController::class, 'store'])->name('departments.store');
+    Route::put('/departments/{id}', [DepartmentController::class, 'update'])->name('departments.update');
+    Route::delete('/departments/{id}', [DepartmentController::class, 'destroy'])->name('departments.destroy');
 
     // Admin Routes for Grade Management
     Route::get('/grades', [GradeController::class, 'index'])->name('grades.index');
@@ -117,6 +179,12 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::delete('/examschedule/{id}', [AddExamScheduleController::class, 'destroy'])->name('examschedule.destroy');
     Route::get('/examschedule/get-subjects', [AddExamScheduleController::class, 'getSubjectsByClass'])->name('examschedule.get-subjects');
 
+    // Credit Requirement (per year)
+    Route::get('/credit-per-year', [CreditPerYearController::class, 'index'])->name('creditperyear.index');
+    Route::get('/credit-per-year/create', [CreditPerYearController::class, 'create'])->name('creditperyear.create');
+    Route::post('/credit-per-year', [CreditPerYearController::class, 'store'])->name('creditperyear.store');
+    Route::put('/credit-per-year/{id}', [CreditPerYearController::class, 'update'])->name('creditperyear.update');
+    Route::delete('/credit-per-year/{id}', [CreditPerYearController::class, 'destroy'])->name('creditperyear.destroy');
 });
 
 // Teacher Routes
@@ -125,6 +193,8 @@ Route::prefix('teacher')->middleware('auth:teacher')->group(function () {
     Route::post('/addmarks', [MarkController::class, 'store'])->name('teacher.storemarks');
     Route::post('/fetch-students', [MarkController::class, 'fetchStudents'])->name('teacher.fetchstudents');
     Route::post('/fetch-subjects', [MarkController::class, 'fetchSubjects'])->name('teacher.fetchsubjects');
+    Route::post('/marks/fetch-students-by-subject', [MarkController::class, 'fetchStudentsBySubject'])->name('teacher.fetchstudents.bysubject');
+
     Route::get('/classes', [ClassListController::class, 'index'])->name('teacher.classes');
     Route::get('/students', [StudentListController::class, 'index'])->name('teacher.students');
 
@@ -158,10 +228,19 @@ Route::prefix('teacher')->middleware('auth:teacher')->group(function () {
 // Student Routes
 Route::prefix('student')->middleware('auth:student')->group(function () {
     Route::get('/dashboard', [StudentDashboardController::class, 'index'])->name('student.dashboard');
-    Route::get('/profile', [StudentProfileController::class, 'index'])->name('student.profile');
+    Route::get('/studentprofile', [StudentProfileController::class, 'index'])->name('student.profile.index');
+    Route::put('/studentprofile/parent', [StudentProfileController::class, 'updateParent'])->name('student.profile.update.parent');
+    Route::put('/studentprofile/contact', [StudentProfileController::class, 'updateContact'])->name('student.profile.update.contact');
 
     Route::get('/marks', [StudentMarksController::class, 'index'])->name('student.marks');
+
     Route::get('/subjects', [StudentSubjectController::class, 'index'])->name('student.subjects');
+    Route::post('/enroll-courses', [StudentSubjectController::class, 'enrollBulk'])->name('student.enroll.courses.bulk');
+    Route::delete('/drop-course/{subject}', [StudentSubjectController::class, 'drop'])->name('student.drop.course');
+
+    Route::get('/courseoverview', [StudentCourseOverviewController::class, 'index'])->name('studentcourseoverview.index');
+    Route::post('/enroll-course/{subject}', [StudentCourseOverviewController::class, 'enrollCourse'])->name('student.enroll.course');
+
     Route::get('/library', [StudentLibraryController::class, 'index'])->name('student.library');
     Route::get('/notice', [StudentNoticeController::class, 'index'])->name('student.notice');
     Route::get('/exam-schedule', [StudentExamController::class, 'index'])->name('student.exam.schedule');
@@ -175,6 +254,7 @@ Route::prefix('student')->middleware('auth:student')->group(function () {
     Route::get('/fullcalender', [FullCalenderController::class, 'index']);
 
     Route::post('/fullcalenderAjax', [FullCalenderController::class, 'ajax']);
+    Route::get('/offered-courses', [OfferedCoursesController::class, 'index'])->name('student.offered.courses');
 });
 
 require __DIR__ . '/auth.php';

@@ -15,15 +15,18 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('year')->default('1st Year');
+            $table->bigInteger('credit_completed')->default('0');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->unsignedBigInteger('class_id')->nullable(); // Foreign key to classes table
-            $table->string('section')->nullable(); // Section assigned to the student
+            $table->unsignedBigInteger('class_id')->nullable();
+            $table->string('section')->nullable();
+            $table->unsignedBigInteger('department_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
 
-            // Foreign Key Constraint
             $table->foreign('class_id')->references('id')->on('classes')->onDelete('set null');
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('set null');
         });
     }
 

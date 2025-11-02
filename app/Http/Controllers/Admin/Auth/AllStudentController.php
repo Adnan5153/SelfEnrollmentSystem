@@ -36,7 +36,6 @@ class AllStudentController extends Controller
     {
         // Fetch the student record
         $student = AllStudent::where('student_id', $student_id)->firstOrFail();
-        $parent = $student->parent;
 
         // Validate student data
         $validatedData = $request->validate([
@@ -49,6 +48,23 @@ class AllStudentController extends Controller
             'religion' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:allstudents,email,' . $student_id . ',student_id',
         ]);
+
+        // Ensure student has a parent (assign default parent if none)
+        if (!$student->parent_id) {
+            $defaultParent = ParentModel::firstOrCreate(
+                ['parent_email' => 'default.parent@institution.edu'],
+                [
+                    'father_name'       => 'Default Father',
+                    'mother_name'       => 'Default Mother',
+                    'father_occupation' => 'N/A',
+                    'mother_occupation' => 'N/A',
+                    'phone_number'      => '+880 1XXX-XXXXXX',
+                    'present_address'   => 'Default Address',
+                    'permanent_address' => 'Default Address',
+                ]
+            );
+            $validatedData['parent_id'] = $defaultParent->id;
+        }
 
         // Update student details
         $student->update($validatedData);
@@ -85,19 +101,23 @@ class AllStudentController extends Controller
      */
     public function destroy($student_id)
     {
-        // Find student record
-        $student = AllStudent::where('student_id', $student_id)->firstOrFail();
-        $parent = $student->parent;
+        try {
+            $student = AllStudent::where('student_id', $student_id)->firstOrFail();
+            $parent = $student->parent;
 
-        // Check if the parent is only linked to this student
-        if ($parent && $parent->students()->count() === 1) {
-            $parent->delete(); // Delete the parent if no other students are linked
+            // Only delete parent if it's not the default parent and has no other students
+            if ($parent && $parent->parent_email !== 'default.parent@institution.edu' && $parent->students()->count() === 1) {
+                $parent->delete();
+            }
+
+            $student->delete();
+
+            return redirect()->route('allstudent.index')->with('success', 'Student deleted.');
+        } catch (\Exception $e) {
+            return redirect()->route('allstudent.index')->with('error', 'Delete failed: ' . $e->getMessage());
         }
-
-        $student->delete();
-
-        return redirect()->route('allstudent.index')->with('success', 'Student and related parent information deleted successfully.');
     }
+
 
     /**
      * Delete a parent separately.

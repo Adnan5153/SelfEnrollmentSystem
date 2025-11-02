@@ -1,0 +1,27 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    public function up(): void
+    {
+        Schema::create('credit_per_years', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('department_id');
+            $table->string('year');
+            $table->string('required_credits');
+            $table->timestamps();
+
+            $table->foreign('department_id')->references('id')->on('departments')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->unique(['department_id', 'year']);
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('credit_per_years');
+    }
+};

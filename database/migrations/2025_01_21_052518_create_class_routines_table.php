@@ -9,7 +9,6 @@ return new class extends Migration {
     {
         Schema::create('class_routines', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('class_id');
             $table->unsignedBigInteger('subject_id');
             $table->unsignedBigInteger('teacher_id'); // ✅ Change field name
             $table->string('day_of_week');
@@ -18,7 +17,6 @@ return new class extends Migration {
             $table->string('room_number')->nullable();
             $table->timestamps();
 
-            $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade');
             $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
             $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade'); // ✅ Fix teacher reference
         });

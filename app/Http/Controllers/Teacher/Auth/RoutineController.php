@@ -12,8 +12,9 @@ class RoutineController extends Controller
     {
         $teacherId = Auth::id();
 
+        // Only eager load subject and teacher
         $routines = ClassRoutine::where('teacher_id', $teacherId)
-            ->with(['class', 'subject'])
+            ->with(['subject'])
             ->orderByRaw("FIELD(day_of_week, 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')")
             ->orderBy('start_time')
             ->get();

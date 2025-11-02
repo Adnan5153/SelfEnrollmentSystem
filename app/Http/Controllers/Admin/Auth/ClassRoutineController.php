@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ClassRoutine;
-use App\Models\ClassModel;
 use App\Models\Subject;
 use App\Models\Teacher;
 
@@ -16,7 +15,8 @@ class ClassRoutineController extends Controller
      */
     public function index()
     {
-        $class_routines = ClassRoutine::with(['class', 'subject', 'teacher'])->get();
+        // Eager load subject and its class, and teacher
+        $class_routines = ClassRoutine::with(['subject.class', 'teacher'])->get();
         return view('admin.layouts.allclassroutines', compact('class_routines'));
     }
 
@@ -25,12 +25,11 @@ class ClassRoutineController extends Controller
      */
     public function create()
     {
-        $classes = ClassModel::all();
-        $subjects = Subject::all();
+        $subjects = Subject::with('class')->get(); // Eager load class for display
         $teachers = Teacher::all();
-        $class_routines = ClassRoutine::all();
+        $class_routines = ClassRoutine::with(['subject.class', 'teacher'])->get();
 
-        return view('admin.layouts.addclassroutine', compact('classes', 'subjects', 'teachers', 'class_routines'));
+        return view('admin.layouts.addclassroutine', compact('subjects', 'teachers', 'class_routines'));
     }
 
     /**
@@ -38,11 +37,9 @@ class ClassRoutineController extends Controller
      */
     public function store(Request $request)
     {
-        
         $request->validate([
-            'class_id' => 'required|exists:classes,id',
             'subject_id' => 'required|exists:subjects,id',
-            'teacher_id' => 'required|exists:teachers,id', 
+            'teacher_id' => 'required|exists:teachers,id',
             'day_of_week' => 'required|string|max:10',
             'start_time' => 'required|date_format:H:i',
             'end_time' => 'required|date_format:H:i|after:start_time',
@@ -51,7 +48,7 @@ class ClassRoutineController extends Controller
             'end_time.after' => 'The end time must be after the start time.',
         ]);
 
-        // ✅ Ensure teacher is not assigned to another class at the same time
+        // Conflict check
         $conflict = ClassRoutine::where('teacher_id', $request->teacher_id)
             ->where('day_of_week', $request->day_of_week)
             ->where(function ($query) use ($request) {
@@ -70,9 +67,7 @@ class ClassRoutineController extends Controller
             ])->withInput();
         }
 
-        //  Store Class Routine 
         ClassRoutine::create([
-            'class_id' => $request->class_id,
             'subject_id' => $request->subject_id,
             'teacher_id' => $request->teacher_id,
             'day_of_week' => $request->day_of_week,
@@ -90,11 +85,10 @@ class ClassRoutineController extends Controller
     public function edit($id)
     {
         $class_routine = ClassRoutine::findOrFail($id);
-        $classes = ClassModel::all();
-        $subjects = Subject::all();
+        $subjects = Subject::with('class')->get();
         $teachers = Teacher::all();
 
-        return view('admin.layouts.editclassroutine', compact('class_routine', 'classes', 'subjects', 'teachers'));
+        return view('admin.layouts.modal.editclassroutine', compact('class_routine', 'subjects', 'teachers'));
     }
 
     /**
@@ -105,9 +99,8 @@ class ClassRoutineController extends Controller
         $class_routine = ClassRoutine::findOrFail($id);
 
         $request->validate([
-            'class_id' => 'required|exists:classes,id',
             'subject_id' => 'required|exists:subjects,id',
-            'teacher_id' => 'required|exists:teachers,id', // ✅ Correct field
+            'teacher_id' => 'required|exists:teachers,id',
             'day_of_week' => 'required|string|max:20',
             'start_time' => 'required|date_format:H:i',
             'end_time' => 'required|date_format:H:i|after:start_time',
@@ -115,9 +108,8 @@ class ClassRoutineController extends Controller
         ]);
 
         $class_routine->update([
-            'class_id' => $request->class_id,
             'subject_id' => $request->subject_id,
-            'teacher_id' => $request->teacher_id, // ✅ Correct field
+            'teacher_id' => $request->teacher_id,
             'day_of_week' => $request->day_of_week,
             'start_time' => $request->start_time,
             'end_time' => $request->end_time,
@@ -128,12 +120,11 @@ class ClassRoutineController extends Controller
     }
 
     /**
-     * Get subjects based on selected class (AJAX request).
+     * (Optional) Get subjects by class for other UIs. Safe to keep for other use cases.
      */
     public function getSubjectsByClass(Request $request)
     {
         $subjects = Subject::where('class_id', $request->class_id)->get();
-
         return response()->json($subjects);
     }
 

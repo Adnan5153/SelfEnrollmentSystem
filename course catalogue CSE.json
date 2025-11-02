@@ -1,0 +1,884 @@
+[
+    {
+        "Subject Name": "Structured Programming",
+        "Subject Code": "CSE 0613 111",
+        "Year": 1,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Structured Programming Lab",
+        "Subject Code": "CSE 0613 111L",
+        "Year": 1,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Introduction to Electrical Engineering",
+        "Subject Code": "EEE 0713 111",
+        "Year": 1,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Introduction to Electrical Engineering Lab",
+        "Subject Code": "EEE 0713 111L",
+        "Year": 1,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Calculus",
+        "Subject Code": "MAT 0541 111",
+        "Year": 1,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Engineering Physics I",
+        "Subject Code": "PHY 0533 111",
+        "Year": 1,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Engineering Physics I Lab",
+        "Subject Code": "PHY 0533 111L",
+        "Year": 1,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Functional English",
+        "Subject Code": "ENG 0231 101",
+        "Year": 1,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Object Oriented Programming",
+        "Subject Code": "CSE 0613 121",
+        "Year": 1,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Object Oriented Programming Lab",
+        "Subject Code": "CSE 0613 121L",
+        "Year": 1,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Engineering Chemistry",
+        "Subject Code": "CHE 0531 122",
+        "Year": 1,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Electronic Devices and Circuits",
+        "Subject Code": "EEE 0713 121",
+        "Year": 1,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Electronic Devices and Circuits Lab",
+        "Subject Code": "EEE 0713 121L",
+        "Year": 1,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Differential Equations and Matrices",
+        "Subject Code": "MAT 0541 121",
+        "Year": 1,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Bangla Bhasha",
+        "Subject Code": "BLL 0232 101",
+        "Year": 1,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Introduction to Sociology",
+        "Subject Code": "SOC 0314 101",
+        "Year": 1,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Digital Logic Design",
+        "Subject Code": "CSE 0714 215",
+        "Year": 2,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Digital Logic Design Lab",
+        "Subject Code": "CSE 0714 215L",
+        "Year": 2,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Data Structure",
+        "Subject Code": "CSE 0613 211",
+        "Year": 2,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Data Structure Lab",
+        "Subject Code": "CSE 0613 211L",
+        "Year": 2,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Discrete Mathematics",
+        "Subject Code": "CSE 0613 212",
+        "Year": 2,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Engineering Statistics",
+        "Subject Code": "MAT 0542 211",
+        "Year": 2,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "History of Emergence of Independent Bangladesh",
+        "Subject Code": "BDS 0222 201",
+        "Year": 2,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Introduction to Economics",
+        "Subject Code": "ECN 0311 201",
+        "Year": 2,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Microprocessor and Interfacing",
+        "Subject Code": "CSE 0714 221",
+        "Year": 2,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Microprocessor and Interfacing Lab",
+        "Subject Code": "CSE 0714 221L",
+        "Year": 2,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Algorithm Design and Analysis",
+        "Subject Code": "CSE 0613 222",
+        "Year": 2,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Algorithm Design and Analysis Lab",
+        "Subject Code": "CSE 0613 222L",
+        "Year": 2,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Database Management Systems",
+        "Subject Code": "CSE 0612 223",
+        "Year": 2,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Database Management Systems Lab",
+        "Subject Code": "CSE 0612 223L",
+        "Year": 2,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Principle of Accounting",
+        "Subject Code": "ACN 0411 201",
+        "Year": 2,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Industrial and Operational Management",
+        "Subject Code": "MGT 0413 201",
+        "Year": 2,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Vector Analysis and Complex Variables",
+        "Subject Code": "MAT 0514 221",
+        "Year": 2,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Computer Organization and Architecture",
+        "Subject Code": "CSE 0714 311",
+        "Year": 3,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Artificial Intelligence",
+        "Subject Code": "CSE 0619 312",
+        "Year": 3,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Artificial Intelligence Lab",
+        "Subject Code": "CSE 0619 312L",
+        "Year": 3,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Data Communication",
+        "Subject Code": "CSE 0714 313",
+        "Year": 3,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Data Communication Lab",
+        "Subject Code": "CSE 0714 313L",
+        "Year": 3,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Web Programming",
+        "Subject Code": "CSE 0613 314",
+        "Year": 3,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Web Programming Lab",
+        "Subject Code": "CSE 0613 314L",
+        "Year": 3,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Theory of Computation",
+        "Subject Code": "CSE 0613 315",
+        "Year": 3,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Transformation Theory",
+        "Subject Code": "MAT 0541 311",
+        "Year": 3,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Machine Learning",
+        "Subject Code": "CSE 0619 321",
+        "Year": 3,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Machine Learning Lab",
+        "Subject Code": "CSE 0619 321L",
+        "Year": 3,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Computer Networks",
+        "Subject Code": "CSE 0612 322",
+        "Year": 3,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Computer Networks Lab",
+        "Subject Code": "CSE 0612 322L",
+        "Year": 3,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Elective I (Software Engineering)",
+        "Subject Code": "CSE 0613 37X",
+        "Year": 3,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Operating System",
+        "Subject Code": "CSE 0613 324",
+        "Year": 3,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Operating System Lab",
+        "Subject Code": "CSE 0613 324L",
+        "Year": 3,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Elective II (Data Science)",
+        "Subject Code": "CSE 0619 39X",
+        "Year": 3,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Elective II Lab (Data Science)",
+        "Subject Code": "CSE 0619 39XL",
+        "Year": 3,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Introduction to Internet of Things",
+        "Subject Code": "CSE 0619 411",
+        "Year": 4,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Introduction to Internet of Things Lab",
+        "Subject Code": "CSE 0619 411L",
+        "Year": 4,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Elective III (Theory and Hardware)",
+        "Subject Code": "CSE 0541 47X",
+        "Year": 4,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Elective III Lab (Theory and Hardware)",
+        "Subject Code": "CSE 0541 47XL",
+        "Year": 4,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "LFE",
+        "Subject Code": "CSE 0788 401",
+        "Year": 4,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Software Engineering",
+        "Subject Code": "CSE 0613 412",
+        "Year": 4,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Software Engineering Lab",
+        "Subject Code": "CSE 0613 412L",
+        "Year": 4,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Computer Graphics",
+        "Subject Code": "CSE 0613 421",
+        "Year": 4,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Computer Graphics Lab",
+        "Subject Code": "CSE 0613 421L",
+        "Year": 4,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Compiler Design",
+        "Subject Code": "CSE 0613 422",
+        "Year": 4,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Compiler Design Lab",
+        "Subject Code": "CSE 0613 422L",
+        "Year": 4,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Information Security",
+        "Subject Code": "CSE 0612 423",
+        "Year": 4,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Elective IV (ICT)",
+        "Subject Code": "CSE 0613 48X",
+        "Year": 4,
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "System Analysis and Design",
+        "Subject Code": "CSE 0613 371",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Decision Support System",
+        "Subject Code": "CSE 0619 372",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Human Computer Interaction",
+        "Subject Code": "CSE 0619 373",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Digital Image Processing",
+        "Subject Code": "CSE 0619 391",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Digital Image Processing Lab",
+        "Subject Code": "CSE 0619 391L",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Data Mining",
+        "Subject Code": "CSE 0619 392",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Data Mining Lab",
+        "Subject Code": "CSE 0619 392L",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Big Data",
+        "Subject Code": "CSE 0619 393",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Big Data Lab",
+        "Subject Code": "CSE 0619 393L",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Natural Language Processing",
+        "Subject Code": "CSE 0619 394",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Natural Language Processing Lab",
+        "Subject Code": "CSE 0619 394L",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Neural Network and Fuzzy Logic",
+        "Subject Code": "CSE 0619 470",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Neural Network and Fuzzy Logic Lab",
+        "Subject Code": "CSE 0619 470L",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Numerical Method for Engineers",
+        "Subject Code": "CSE 0541 471",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Numerical Method for Engineers Lab",
+        "Subject Code": "CSE 0541 471L",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Mathematical Analysis for Computer Science",
+        "Subject Code": "CSE 0541 472",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Mathematical Analysis for Computer Science Lab",
+        "Subject Code": "CSE 0541 472L",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Basic Graph Theory",
+        "Subject Code": "CSE 0613 473",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Basic Graph Theory Lab",
+        "Subject Code": "CSE 0613 473L",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Robotics",
+        "Subject Code": "CSE 0714 474",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Robotics Lab",
+        "Subject Code": "CSE 0714 474L",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Digital Electronics and Pulse Techniques",
+        "Subject Code": "CSE 0714 475",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Digital Electronics and Pulse Techniques Lab",
+        "Subject Code": "CSE 0714 475L",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Electrical Drives and Instrumentation",
+        "Subject Code": "CSE 0714 476",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Electrical Drives and Instrumentation Lab",
+        "Subject Code": "CSE 0714 476L",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "VLSI Design",
+        "Subject Code": "CSE 0714 477",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "VLSI Design Lab",
+        "Subject Code": "CSE 0714 477L",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Digital Signal Processing",
+        "Subject Code": "CSE 0714 478",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Digital Signal Processing Lab",
+        "Subject Code": "CSE 0714 478L",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Introduction to Bioinformatics",
+        "Subject Code": "CSE 0613 479",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Introduction to Bioinformatics Lab",
+        "Subject Code": "CSE 0613 479L",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Wireless Communication",
+        "Subject Code": "CSE 0714 481",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Mobile Apps and Computing",
+        "Subject Code": "CSE 0613 482",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Cloud Computing",
+        "Subject Code": "CSE 0613 483",
+        "Year": "Technical Electives",
+        "Department": "Computer Science & Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Elective"
+    }
+]

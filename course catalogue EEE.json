@@ -1,0 +1,542 @@
+[
+    {
+        "Subject Name": "Functional English",
+        "Subject Code": "ENG 0231 101",
+        "Year": 1,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Electrical Circuits I",
+        "Subject Code": "EEE 0713 111",
+        "Year": 1,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Electrical Circuits I Lab",
+        "Subject Code": "EEE 0713 111L",
+        "Year": 1,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Engineering Physics",
+        "Subject Code": "PHY 0533 111",
+        "Year": 1,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Engineering Physics Lab",
+        "Subject Code": "PHY 0533 111L",
+        "Year": 1,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Calculus",
+        "Subject Code": "MAT 0541 111",
+        "Year": 1,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Structured Programming",
+        "Subject Code": "CSE 0613 111",
+        "Year": 1,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Structured Programming Lab",
+        "Subject Code": "CSE 0613 111L",
+        "Year": 1,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Object Oriented Programming",
+        "Subject Code": "CSE 0613 121",
+        "Year": 1,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Object Oriented Programming Lab",
+        "Subject Code": "CSE 0613 121L",
+        "Year": 1,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Engineering Drawing",
+        "Subject Code": "CME 0731 113",
+        "Year": 1,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Differential Equations and Matrices",
+        "Subject Code": "MAT 0541 121",
+        "Year": 1,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Engineering Chemistry",
+        "Subject Code": "CHE 0531 122",
+        "Year": 1,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Introduction to Sociology",
+        "Subject Code": "SOC 0314 102",
+        "Year": 1,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Electrical Circuits II",
+        "Subject Code": "EEE 0713 121",
+        "Year": 1,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Electrical Circuits II Lab",
+        "Subject Code": "EEE 0713 121L",
+        "Year": 1,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Bangla Bhasha",
+        "Subject Code": "BLL 0232 201",
+        "Year": 2,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "General"
+    },
+    {
+        "Subject Name": "Introduction to Economics",
+        "Subject Code": "ECN 0311 201",
+        "Year": 2,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "General"
+    },
+    {
+        "Subject Name": "Engineering Statistics",
+        "Subject Code": "MAT 0542 211",
+        "Year": 2,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "General"
+    },
+    {
+        "Subject Name": "Electrical Machines I",
+        "Subject Code": "EEE 0713 211",
+        "Year": 2,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Electrical Machines I Lab",
+        "Subject Code": "EEE 0713 211L",
+        "Year": 2,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Electronics I",
+        "Subject Code": "EEE 0714 213",
+        "Year": 2,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Electronics I Lab",
+        "Subject Code": "EEE 0714 213L",
+        "Year": 2,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "History of Emergence of Independent Bangladesh",
+        "Subject Code": "BDS 0222 201",
+        "Year": 2,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "General"
+    },
+    {
+        "Subject Name": "Principles of Accounting",
+        "Subject Code": "ACN 0411 201",
+        "Year": 2,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "General"
+    },
+    {
+        "Subject Name": "Vector analysis and Complex Variables",
+        "Subject Code": "MAT 0541 221",
+        "Year": 2,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "General"
+    },
+    {
+        "Subject Name": "Fundamentals of Mechanical Engineering",
+        "Subject Code": "ME 0715 222",
+        "Year": 2,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "General"
+    },
+    {
+        "Subject Name": "Electrical Machines II",
+        "Subject Code": "EEE 0713 221",
+        "Year": 2,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Electrical Machines II Lab",
+        "Subject Code": "EEE 0713 221L",
+        "Year": 2,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Electronics II",
+        "Subject Code": "EEE 0714 224",
+        "Year": 2,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Electronics II Lab",
+        "Subject Code": "EEE 0714 224L",
+        "Year": 2,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Numerical Methods",
+        "Subject Code": "MAT 0541 222",
+        "Year": 2,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "General"
+    },
+    {
+        "Subject Name": "Industrial and Operational Management",
+        "Subject Code": "MGT 0413 301",
+        "Year": 3,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "General"
+    },
+    {
+        "Subject Name": "Signals and Systems",
+        "Subject Code": "EEE 0714 311",
+        "Year": 3,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Principles of Electromagnetics",
+        "Subject Code": "EEE 0714 313",
+        "Year": 3,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Digital Electronics",
+        "Subject Code": "EEE 0714 317",
+        "Year": 3,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Digital Electronics Lab",
+        "Subject Code": "EEE 0714 317L",
+        "Year": 3,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Transmission and Distribution of Electrical Power",
+        "Subject Code": "EEE 0713 315",
+        "Year": 3,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Electrical and Electronic Service Design",
+        "Subject Code": "EEE 0713 312",
+        "Year": 3,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Measurement and Instrumentation",
+        "Subject Code": "EEE 0714 318",
+        "Year": 3,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Measurement and Instrumentation Lab",
+        "Subject Code": "EEE 0714 318L",
+        "Year": 3,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Analog Communication",
+        "Subject Code": "EEE 0714 327",
+        "Year": 3,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Analog Communication Lab",
+        "Subject Code": "EEE 0714 327L",
+        "Year": 3,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Power System Analysis",
+        "Subject Code": "EEE 0713 322",
+        "Year": 3,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Power System Analysis Lab",
+        "Subject Code": "EEE 0713 322L",
+        "Year": 3,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Linear Control Systems",
+        "Subject Code": "EEE 0714 323",
+        "Year": 3,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Linear Control Systems Lab",
+        "Subject Code": "EEE 0714 323L",
+        "Year": 3,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Microprocessor and Interfacing",
+        "Subject Code": "CSE 0714 321",
+        "Year": 3,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Microprocessor and Interfacing Lab",
+        "Subject Code": "CSE 0714 321L",
+        "Year": 3,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Microwave Engineering",
+        "Subject Code": "EEE 0714 324",
+        "Year": 3,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Live-in-Field Experience",
+        "Subject Code": "LFE 0788 411",
+        "Year": 4,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "field",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Power Electronics",
+        "Subject Code": "EEE 0714 415",
+        "Year": 4,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Power Electronics Lab",
+        "Subject Code": "EEE 0714 415L",
+        "Year": 4,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Power System Protection",
+        "Subject Code": "EEE 0713 413",
+        "Year": 4,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Elective I",
+        "Subject Code": "EEE 0713 41X",
+        "Year": 4,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Elective II",
+        "Subject Code": "EEE 0713 42X",
+        "Year": 4,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Elective"
+    },
+    {
+        "Subject Name": "Digital Communication",
+        "Subject Code": "EEE 0714 423",
+        "Year": 4,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Digital Communication Lab",
+        "Subject Code": "EEE 0714 423L",
+        "Year": 4,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Digital Signal Processing",
+        "Subject Code": "EEE 0714 425",
+        "Year": 4,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "theory",
+        "Credit per Hour": 3,
+        "Category": "Core"
+    },
+    {
+        "Subject Name": "Digital Signal Processing Lab",
+        "Subject Code": "EEE 0714 425L",
+        "Year": 4,
+        "Department": "Electrical & Electronic Engineering",
+        "Subject Type": "lab",
+        "Credit per Hour": 1,
+        "Category": "Core"
+    }
+]

@@ -236,11 +236,11 @@
         <aside id="sidebar" class="js-sidebar shadow-lg" style="min-height: 100vh;">
             <!-- Content For Sidebar -->
             <div class="h-100">
-                <div class="sidebar-logo d-flex align-items-center">
+                {{-- <div class="sidebar-logo d-flex align-items-center">
                     <img src="{{ asset('images/bird (1).png') }}" alt="Little Birds School Logo"
                         style="height: 50px; width: auto; margin-right: 10px;">
                     <a href="#">Little Birds School</a>
-                </div>
+                </div> --}}
                 <ul class="sidebar-nav">
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link collapsed shadow" data-bs-toggle="collapse"
@@ -253,7 +253,7 @@
                                 <a href="{{ route('student.dashboard') }}" class="sidebar-link">Dashboard</a>
                             </li>
                             <li class="sidebar-item">
-                                <a href="#" class="sidebar-link">Profile</a>
+                                <a href="{{ route('student.profile.index') }}" class="sidebar-link">Profile</a>
                             </li>
                         </ul>
                     </li>
@@ -295,12 +295,20 @@
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link collapsed shadow" data-bs-toggle="collapse"
                             data-bs-target="#subjects" aria-expanded="false">
-                            <i class="fa-solid fa-layer-group"></i> Subject
+                            <i class="fa-solid fa-layer-group"></i> Courses
                         </a>
                         <ul id="subjects" class="sidebar-dropdown list-unstyled collapse ms-4"
                             data-bs-parent="#sidebar">
                             <li class="sidebar-item">
-                                <a href="{{ route('student.subjects') }}" class="sidebar-link">All Subject</a>
+                                <a href="{{ route('studentcourseoverview.index') }}" class="sidebar-link">Course
+                                    Overview</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="{{ route('student.subjects') }}" class="sidebar-link">My Courses</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="{{ route('student.offered.courses') }}" class="sidebar-link">Offered
+                                    Courses</a>
                             </li>
                         </ul>
                     </li>
@@ -349,7 +357,8 @@
         </aside>
         <div>
             <button class="btn shadow-lg" id="sidebar-toggle" type="button"
-                style="position:relative;left:27%;border: 2px solid #ffc107;">
+                style="position:relative;left:27%;border: 2px solid #ffc107;" title="Toggle sidebar"
+                aria-label="Toggle sidebar navigation">
                 <i class="fa-solid fa-bars"></i>
             </button>
         </div>

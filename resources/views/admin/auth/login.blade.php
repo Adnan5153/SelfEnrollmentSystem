@@ -12,9 +12,9 @@
 
 <style>
     body {
-        background-image: url("{{ asset('images/bird.png') }}");
+        background-image: url("{{ asset('images/logologin.png') }}");
         background-position: center;
-        background-size: 100% 130%;
+        background-size: 40%;
         background-repeat: no-repeat;
     }
 </style>

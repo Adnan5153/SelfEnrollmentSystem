@@ -53,7 +53,7 @@ class GradeController extends Controller
     public function edit($id)
     {
         $grade = Grade::findOrFail($id);
-        return view('admin.layouts.editgrade', compact('grade'));
+        return view('admin.layouts.modal.editgrade', compact('grade'));
     }
 
     /**

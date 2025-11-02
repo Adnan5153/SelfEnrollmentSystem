@@ -1,118 +1,127 @@
 @extends('layouts.teacher')
 
 @section('content')
-    <div class="container mt-5">
-        <h3>Add Marks for Students</h3>
+    <div class="row justify-content-center mt-5">
+        <div class="col-lg-7 col-md-9">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header bg-dark text-white rounded-top-4 border-0 py-3 d-flex align-items-center gap-2">
+                    <i class="fa-solid fa-clipboard-check fa-lg"></i>
+                    <span class="fw-semibold fs-5">Add Marks for Students</span>
+                </div>
+                <div class="card-body bg-light rounded-bottom-4 p-4">
+                    @if (session('success'))
+                        <div class="alert alert-success shadow-sm d-flex align-items-center gap-2">
+                            <i class="fa-solid fa-check-circle"></i>
+                            {{ session('success') }}
+                        </div>
+                    @endif
 
-        @if (session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
-        @endif
+                    <form action="{{ route('teacher.storemarks') }}" method="POST" class="needs-validation" novalidate>
+                        @csrf
 
-        <form action="{{ route('teacher.storemarks') }}" method="POST">
-            @csrf
+                        {{-- Subject Dropdown --}}
+                        <div class="form-floating mb-3">
+                            <select class="form-select" id="subject_id" name="subject_id" required>
+                                <option value="" selected disabled>Select Subject</option>
+                                @foreach ($subjects as $subject)
+                                    <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                                @endforeach
+                            </select>
+                            <label for="subject_id"><i class="fa-solid fa-book-open me-1"></i> Subject</label>
+                            <div class="invalid-feedback">
+                                Please select a subject.
+                            </div>
+                        </div>
 
-            {{-- Class + Section Dropdown --}}
-            <div class="mb-3">
-                <label for="class_section" class="form-label">Class - Section</label>
-                <select class="form-select" id="class_section" required>
-                    <option value="">Select Class - Section</option>
-                    @foreach ($classes as $class)
-                        <option value="{{ $class->id }}|{{ $class->section }}">
-                            {{ $class->class_name }} - {{ $class->section }}
-                        </option>
-                    @endforeach
-                </select>
+                        {{-- Student Dropdown --}}
+                        <div class="form-floating mb-3">
+                            <select class="form-select" id="student_id" name="student_id" required>
+                                <option value="" selected disabled>Select Student</option>
+                            </select>
+                            <label for="student_id"><i class="fa-solid fa-user-graduate me-1"></i> Student</label>
+                            <div class="invalid-feedback">
+                                Please select a student.
+                            </div>
+                        </div>
+
+                        {{-- Marks --}}
+                        <div class="form-floating mb-3">
+                            <input type="number" class="form-control" id="marks" name="marks"
+                                placeholder="Enter marks" min="0" max="100" required>
+                            <label for="marks"><i class="fa-solid fa-pen-ruler me-1"></i> Marks (0-100)</label>
+                            <div class="invalid-feedback">
+                                Please enter marks between 0 and 100.
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-end gap-2 mt-3">
+                            <button type="submit" class="btn btn-primary btn-lg px-4 rounded-pill shadow-sm">
+                                <i class="fa-solid fa-circle-plus me-2"></i> Add Marks
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="mb-3">
-                <label for="student_id" class="form-label">Student</label>
-                <select class="form-select" id="student_id" name="student_id" required>
-                    <option value="">Select Student</option>
-                </select>
-            </div>
-
-            {{-- Subject Dropdown --}}
-            <div class="mb-3">
-                <label for="subject" class="form-label">Subject</label>
-                <select class="form-select" id="subject" name="subject" required>
-                    <option value="">Select Subject</option>
-                </select>
-            </div>
-
-
-            {{-- Marks --}}
-            <div class="mb-3">
-                <label for="marks" class="form-label">Marks</label>
-                <input type="number" class="form-control" id="marks" name="marks" placeholder="Enter marks"
-                    min="0" max="100" required>
-            </div>
-
-            {{-- Remarks --}}
-            <div class="mb-3">
-                <label for="remarks" class="form-label">Remarks</label>
-                <textarea class="form-control" id="remarks" name="remarks" rows="3" placeholder="Optional remarks"></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Add Marks</button>
-        </form>
+        </div>
     </div>
+
 
     {{-- AJAX Script --}}
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const classSectionDropdown = document.getElementById('class_section');
-
-            classSectionDropdown.addEventListener('change', function() {
-                const [classId, section] = this.value.split('|');
-
-                if (classId && section) {
-                    // Fetch Students
-                    fetch("{{ route('teacher.fetchstudents') }}", {
+            const subjectDropdown = document.getElementById('subject_id');
+            subjectDropdown.addEventListener('change', function() {
+                const subjectId = this.value;
+                const studentSelect = document.getElementById('student_id');
+                studentSelect.innerHTML = '<option value="" selected disabled>Loading...</option>';
+                if (subjectId) {
+                    fetch("{{ route('teacher.fetchstudents.bysubject') }}", {
                             method: 'POST',
                             headers: {
                                 'X-CSRF-TOKEN': '{{ csrf_token() }}',
                                 'Content-Type': 'application/json',
                             },
                             body: JSON.stringify({
-                                class_id: classId,
-                                section: section
+                                subject_id: subjectId
                             })
                         })
                         .then(res => res.json())
                         .then(students => {
-                            const studentSelect = document.getElementById('student_id');
-                            studentSelect.innerHTML = '<option value="">Select Student</option>';
-                            students.forEach(student => {
-                                const option = document.createElement('option');
-                                option.value = student.id;
-                                option.textContent = `${student.name} (ID: ${student.id})`;
-                                studentSelect.appendChild(option);
-                            });
-                        });
-
-                    // Fetch Subjects
-                    fetch("{{ route('teacher.fetchsubjects') }}", {
-                            method: 'POST',
-                            headers: {
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({
-                                class_id: classId
-                            })
+                            studentSelect.innerHTML =
+                                '<option value="" selected disabled>Select Student</option>';
+                            if (students.length === 0) {
+                                studentSelect.innerHTML +=
+                                    '<option value="" disabled>No students enrolled</option>';
+                            } else {
+                                students.forEach(student => {
+                                    const option = document.createElement('option');
+                                    option.value = student.id;
+                                    option.textContent = `${student.name} (ID: ${student.id})`;
+                                    studentSelect.appendChild(option);
+                                });
+                            }
                         })
-                        .then(res => res.json())
-                        .then(subjects => {
-                            const subjectSelect = document.getElementById('subject');
-                            subjectSelect.innerHTML = '<option value="">Select Subject</option>';
-                            subjects.forEach(subject => {
-                                const option = document.createElement('option');
-                                option.value = subject.name;
-                                option.textContent = subject.name;
-                                subjectSelect.appendChild(option);
-                            });
+                        .catch(() => {
+                            studentSelect.innerHTML =
+                                '<option value="" disabled>Error loading students</option>';
                         });
                 }
             });
+
+            // Bootstrap validation
+            (() => {
+                'use strict'
+                const forms = document.querySelectorAll('.needs-validation')
+                Array.from(forms).forEach(form => {
+                    form.addEventListener('submit', event => {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+            })()
         });
     </script>
 @endsection

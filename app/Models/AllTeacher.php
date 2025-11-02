@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Allteacher extends Model
 {
 	protected $table = 'allteachers';
-	
+
 	protected $fillable = [
 		'class_id',
-		'subject',
+        'department_id',
 		'first_name',
 		'last_name',
 		'section',
@@ -28,4 +28,8 @@ class Allteacher extends Model
 	{
 		return $this->belongsTo(ClassModel::class);
 	}
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
 }

@@ -9,6 +9,7 @@
         "inertiajs/inertia-laravel": "^2.0",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
+        "phpoffice/phpspreadsheet": "^5.2",
         "reliese/laravel": "^1.4"
     },
     "require-dev": {

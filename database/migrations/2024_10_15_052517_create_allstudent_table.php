@@ -20,23 +20,27 @@ return new class extends Migration
             $table->string('section');
             $table->string('gender');
             $table->date('date_of_birth');
-            $table->string('admission_number')->nullable();
+            $table->unsignedBigInteger('department_id');
             $table->string('religion');
             $table->string('email')->unique();
             $table->unsignedBigInteger('parent_id'); // Foreign key reference to allparents
             $table->timestamps();
-
             // Correct foreign key definition
             $table->foreign('parent_id')
                 ->references('id')
                 ->on('allparents')
                 ->cascadeOnUpdate()
-                ->cascadeOnDelete(); 
+                ->cascadeOnDelete();
             $table->foreign('class_id')
                 ->references('id')
                 ->on('classes')
                 ->cascadeOnUpdate()
-                ->cascadeOnDelete(); 
+                ->cascadeOnDelete();
+            $table->foreign('department_id')
+                ->references('id')
+                ->on('departments')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
         });
     }
 

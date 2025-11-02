@@ -16,7 +16,7 @@ class AddExamScheduleController extends Controller
     public function index()
     {
         $classes = ClassModel::all();
-        $subjects = Subject::all();
+        $subjects = Subject::all(); // All subjects for dropdown
         $examSchedules = ExamSchedule::with(['class', 'subject'])->get();
 
         return view('admin.layouts.addexamschedule', compact('classes', 'subjects', 'examSchedules'));
@@ -61,22 +61,33 @@ class AddExamScheduleController extends Controller
         return redirect()->route('examschedule.index')->with('success', 'Exam schedule added successfully.');
     }
 
+    /**
+     * Show all exam schedules.
+     */
     public function show()
     {
         $examSchedules = ExamSchedule::with(['class', 'subject'])->get();
-
-        return view('admin.layouts.examschedulelist', compact('examSchedules'));
+        $classes = ClassModel::all();
+        $subjects = Subject::all();
+        return view('admin.layouts.examschedulelist', compact('examSchedules', 'classes', 'subjects'));
     }
 
+
+    /**
+     * Show the form to edit an exam schedule.
+     */
     public function edit($id)
     {
         $examSchedule = ExamSchedule::findOrFail($id);
         $classes = ClassModel::all();
-        $subjects = Subject::where('class_id', $examSchedule->class_id)->get(); // Fetch subjects assigned to the selected class
+        $subjects = Subject::all(); // Show all subjects in edit form
 
         return view('admin.layouts.modal.editexamschedule', compact('examSchedule', 'classes', 'subjects'));
     }
 
+    /**
+     * Update an exam schedule.
+     */
     public function update(Request $request, $id)
     {
         $examSchedule = ExamSchedule::findOrFail($id);
@@ -98,22 +109,14 @@ class AddExamScheduleController extends Controller
         return redirect()->route('examschedule.list')->with('success', 'Exam schedule updated successfully.');
     }
 
-
+    /**
+     * (Optional) API endpoint for JS: Get subjects by class.
+     * You can remove this if you're no longer filtering subjects.
+     */
     public function getSubjectsByClass(Request $request)
     {
-        $classId = $request->query('class_id');
-
-        if (!$classId) {
-            return response()->json(['error' => 'No class selected'], 400);
-        }
-
-        // Fetch subjects assigned to the selected class
-        $subjects = Subject::where('class_id', $classId)->get();
-
-        if ($subjects->isEmpty()) {
-            return response()->json(['message' => 'No subjects found for this class'], 200);
-        }
-
+        // Not used anymore, but kept for backward compatibility.
+        $subjects = Subject::all();
         return response()->json($subjects);
     }
 }

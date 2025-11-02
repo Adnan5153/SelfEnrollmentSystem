@@ -29,7 +29,7 @@ class AllStudent extends Model
         'section',
         'gender',
         'date_of_birth',
-        'admission_number',
+        'department_id',
         'religion',
         'email',
         'parent_id',
@@ -54,5 +54,12 @@ class AllStudent extends Model
     public function studentAccount()
     {
         return $this->hasOne(Student::class, 'email', 'email');
+    }
+    /**
+     * Relationship to the department.
+     */
+    public function department()
+    {
+        return $this->belongsTo(Department::class, 'department_id', 'id');
     }
 }
