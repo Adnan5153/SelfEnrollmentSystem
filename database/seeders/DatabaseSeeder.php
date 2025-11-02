@@ -77,8 +77,9 @@ class DatabaseSeeder extends Seeder
             Student::factory(30)->create();
         }
 
-        // Enroll students listed in summer 2025 CSV into core first-semester subjects
-        $this->call(EnrollSummer2025Seeder::class);
+    // EnrollSummer2025Seeder was removed/cancelled to avoid importing from the provided CSV.
+    // If you want to re-enable it later, restore this call:
+    // $this->call(EnrollSummer2025Seeder::class);
 
         // \App\Models\ClassRoutine::factory(40)->create(); // This line is commented out as per the edit hint
         // \App\Models\ExamSchedule::factory(20)->create(); // Commented out to avoid potential issues
