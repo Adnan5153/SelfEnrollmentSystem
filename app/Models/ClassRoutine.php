@@ -2,13 +2,15 @@
 
 
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ClassRoutine extends Model
 {
+	use HasFactory;
 	protected $table = 'class_routines';
 	protected $fillable = [
-		'class_id',
 		'subject_id',
 		'teacher_id',
 		'day_of_week',
@@ -17,10 +19,6 @@ class ClassRoutine extends Model
 		'room_number'
 	];
 
-	public function class()
-	{
-		return $this->belongsTo(ClassModel::class);
-	}
 
 	public function subject()
 	{

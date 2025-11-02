@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('allteachers', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('class_id');
-            $table->string('subject');
+            $table->unsignedBigInteger('department_id');
             $table->string('first_name');
             $table->string('last_name');
             $table->string('section');
@@ -27,7 +27,9 @@ return new class extends Migration
             $table->string('phone');
             $table->string('address');
             $table->timestamps();
+
             $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade');
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
         });
     }
 

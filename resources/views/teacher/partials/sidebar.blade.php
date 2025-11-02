@@ -236,11 +236,11 @@
         <aside id="sidebar" class="js-sidebar shadow-lg" style="min-height: 100vh;">
             <!-- Content For Sidebar -->
             <div class="h-100">
-                <div class="sidebar-logo d-flex align-items-center">
+                {{-- <div class="sidebar-logo d-flex align-items-center">
                     <img src="{{ asset('images/bird (1).png') }}" alt="Little Birds School Logo"
                         style="height: 50px; width: auto; margin-right: 10px;">
                     <a href="#">Little Birds School</a>
-                </div>
+                </div> --}}
                 <ul class="sidebar-nav">
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link collapsed shadow" data-bs-toggle="collapse"
@@ -249,7 +249,8 @@
                         </a>
                         <ul id="dashboard" class="sidebar-dropdown list-unstyled collapse ms-4"
                             data-bs-parent="#sidebar">
-                            <li class="sidebar-item"><a href="{{ route('teacher.dashboard') }}" class="sidebar-link">Dashboard</a></li>
+                            <li class="sidebar-item"><a href="{{ route('teacher.dashboard') }}"
+                                    class="sidebar-link">Dashboard</a></li>
                             <li class="sidebar-item"><a href="#" class="sidebar-link">Profile</a></li>
                         </ul>
                     </li>
@@ -269,7 +270,7 @@
                     </li>
 
                     <!-- Attendance -->
-                    <li class="sidebar-item">
+                    {{-- <li class="sidebar-item">
                         <a href="#" class="sidebar-link collapsed shadow" data-bs-toggle="collapse"
                             data-bs-target="#attendance" aria-expanded="false">
                             <i class="fa-solid fa-check-square"></i> Attendance
@@ -281,10 +282,10 @@
                             <li class="sidebar-item"><a href="{{ route('teacher.attendance.report') }}"
                                     class="sidebar-link">Attendance Report</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
 
                     <!-- Assignments -->
-                    <li class="sidebar-item">
+                    {{-- <li class="sidebar-item">
                         <a href="#" class="sidebar-link collapsed shadow" data-bs-toggle="collapse"
                             data-bs-target="#assignments" aria-expanded="false">
                             <i class="fa-solid fa-book"></i> Assignments
@@ -298,7 +299,7 @@
                             <li class="sidebar-item"><a href="{{ route('teacher.assignments.submissions') }}"
                                     class="sidebar-link">Student Submissions</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
 
                     <!-- Exam Management -->
                     <li class="sidebar-item">
@@ -325,8 +326,8 @@
                         </a>
                         <ul id="classRoutine" class="sidebar-dropdown list-unstyled collapse ms-4"
                             data-bs-parent="#sidebar">
-                            <li class="sidebar-item"><a href="{{ route('teacher.routine') }}"
-                                    class="sidebar-link">Class Schedule</a></li>
+                            <li class="sidebar-item"><a href="{{ route('teacher.routine') }}" class="sidebar-link">Class
+                                    Schedule</a></li>
                         </ul>
                     </li>
 
@@ -346,7 +347,7 @@
                     </li>
 
                     <!-- Messages -->
-                    <li class="sidebar-item">
+                    {{-- <li class="sidebar-item">
                         <a href="#" class="sidebar-link collapsed shadow" data-bs-toggle="collapse"
                             data-bs-target="#messages" aria-expanded="false">
                             <i class="fa-solid fa-envelope"></i> Messages
@@ -358,10 +359,10 @@
                             <li class="sidebar-item"><a href="{{ route('teacher.announcements') }}"
                                     class="sidebar-link">Announcements</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
 
                     <!-- Notice Board -->
-                    <li class="sidebar-item">
+                    {{-- <li class="sidebar-item">
                         <a href="#" class="sidebar-link collapsed shadow" data-bs-toggle="collapse"
                             data-bs-target="#noticeBoard" aria-expanded="false">
                             <i class="fa-solid fa-flag"></i> Notice Board
@@ -371,10 +372,10 @@
                             <li class="sidebar-item"><a href="{{ route('teacher.notice') }}"
                                     class="sidebar-link">Notice</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
 
                     <!-- Resources -->
-                    <li class="sidebar-item">
+                    {{-- <li class="sidebar-item">
                         <a href="#" class="sidebar-link collapsed shadow" data-bs-toggle="collapse"
                             data-bs-target="#resources" aria-expanded="false">
                             <i class="fa-solid fa-folder-open"></i> Resources and Materials
@@ -386,14 +387,15 @@
                             <li class="sidebar-item"><a href="{{ route('teacher.resources.shared') }}"
                                     class="sidebar-link">Shared Materials</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </aside>
 
         <div>
             <button class="btn shadow-lg" id="sidebar-toggle" type="button"
-                style="position:relative;left:27%;border: 2px solid #ffc107;">
+                style="position:relative;left:27%;border: 2px solid #ffc107;" title="Toggle sidebar"
+                aria-label="Toggle sidebar navigation">
                 <i class="fa-solid fa-bars"></i>
             </button>
         </div>

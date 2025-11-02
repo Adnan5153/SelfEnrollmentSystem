@@ -38,7 +38,7 @@ class ClassController extends Controller
     public function edit($id)
     {
         $class = ClassModel::findOrFail($id);
-        return view('admin.layouts.editclass', compact('class'));
+        return view('admin.layouts.modal.editclass', compact('class'));
     }
 
     public function update(Request $request, $id)

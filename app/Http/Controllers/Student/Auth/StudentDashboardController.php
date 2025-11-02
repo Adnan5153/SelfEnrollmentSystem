@@ -5,10 +5,8 @@ namespace App\Http\Controllers\Student\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\ClassRoutine;
 use App\Models\ExamSchedule;
-use App\Models\Mark;
-use App\Models\Student;
-use App\Models\Subject;
 use App\Models\Teacher;
+use App\Models\Subject;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,32 +16,42 @@ class StudentDashboardController extends Controller
     {
         $student = Auth::guard('student')->user();
 
-        // Total Subjects
-        $subjectsCount = Subject::where('class_id', $student->class_id)->count();
+        // Get IDs of subjects the student has ENROLLED in
+        $subjectIds = $student->subjects()->pluck('subjects.id');
 
-        // Total Marks
-        $marksCount = Mark::where('student_id', $student->id)->count();
+        // Total ENROLLED Subjects
+        $subjectsCount = $subjectIds->count();
 
-        // Total Teachers (by subject assignments)
-        $teachersCount = Teacher::where('class_id', $student->class_id)
-            ->distinct('id')->count('id');
+        // Total Credits from ENROLLED Subjects
+        $totalCredits = Subject::with('credit')
+            ->whereIn('id', $subjectIds)
+            ->get()
+            ->sum(function ($subject) {
+                return $subject->credit ? $subject->credit->credit_hour : 0;
+            });
 
-        // Today's Classes
-        $today = Carbon::now()->format('l'); // Full weekday name
+        // Total Teachers teaching the ENROLLED subjects
+        $teachersCount = Teacher::whereIn(
+            'id',
+            Subject::whereIn('id', $subjectIds)->pluck('teacher_id')
+        )->distinct('id')->count('id');
+
+        // Today's Classes (for ENROLLED subjects only)
+        $today = Carbon::now()->format('l'); // Full weekday name, e.g. 'Monday'
         $todayClasses = ClassRoutine::with(['subject', 'teacher'])
-            ->where('class_id', $student->class_id)
+            ->whereIn('subject_id', $subjectIds)
             ->where('day_of_week', $today)
             ->get();
 
-        // Exam Schedules
+        // Exam Schedules for ENROLLED subjects only
         $examSchedules = ExamSchedule::with('subject')
-            ->where('class_id', $student->class_id)
+            ->whereIn('subject_id', $subjectIds)
             ->orderBy('exam_date', 'asc')
             ->get();
 
         return view('student.dashboard', compact(
             'subjectsCount',
-            'marksCount',
+            'totalCredits', // pass totalCredits to the view
             'teachersCount',
             'todayClasses',
             'examSchedules'

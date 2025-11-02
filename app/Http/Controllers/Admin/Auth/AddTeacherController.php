@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin\Auth;
 
-use App\Http\Controllers\Controller;
+use App\Models\Teacher;
 use App\Models\AllTeacher;
 use App\Models\ClassModel;
-use App\Models\Teacher;
+use App\Models\Department;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
 class AddTeacherController extends Controller
@@ -14,11 +15,14 @@ class AddTeacherController extends Controller
     /**
      * Show the form for adding a new teacher.
      */
+
     public function create()
     {
-        $classes = ClassModel::all(); // Fetch all classes with sections
-        return view('admin.layouts.addteacher', compact('classes'));
+        $classes = ClassModel::all();
+        $departments = Department::all();
+        return view('admin.layouts.addteacher', compact('classes', 'departments'));
     }
+
 
     /**
      * Store a newly created teacher in the database and register them.
@@ -30,7 +34,7 @@ class AddTeacherController extends Controller
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'class_section' => 'required', // Validate merged Class & Section dropdown
-            'subject' => 'required|string',
+            'department_id' => 'required|exists:departments,id',
             'gender' => 'required|string',
             'date_of_birth' => 'required|date',
             'joining_date' => 'required|date',
@@ -56,7 +60,7 @@ class AddTeacherController extends Controller
             'last_name' => $validatedData['last_name'],
             'class_id' => $classId,
             'section' => $section,
-            'subject' => $validatedData['subject'],
+            'department_id' => $validatedData['department_id'],
             'gender' => $validatedData['gender'],
             'date_of_birth' => $validatedData['date_of_birth'],
             'joining_date' => $validatedData['joining_date'],

@@ -3,37 +3,31 @@
 namespace App\Http\Controllers\Student\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\ClassRoutine;
 use Illuminate\Support\Facades\Auth;
+use App\Models\ClassRoutine;
 
 class StudentClassRoutineController extends Controller
 {
     /**
-     * Display the student's class routine.
+     * Display the student's class routine for enrolled courses only.
      */
     public function index()
     {
-        $student = Auth::user();
+        $student = Auth::guard('student')->user();
 
-        if (!$student) {
-            return "User not authenticated";
+        // If the relationship is not set up, guard against null
+        if (!$student || !method_exists($student, 'subjects')) {
+            return view('student.layouts.classroutine', ['class_routines' => collect()]);
         }
 
-        if (!$student->class_id) {
-            return "Student does not have a class assigned.";
-        }
+        // Get only subjects the student has enrolled in
+        $enrolledSubjectIds = $student->subjects()->pluck('subjects.id');
 
-        // Fetch class routine for the student's class
-        $class_routines = ClassRoutine::where('class_id', $student->class_id)
+        $class_routines = ClassRoutine::whereIn('subject_id', $enrolledSubjectIds)
             ->with(['subject', 'teacher'])
             ->orderByRaw("FIELD(day_of_week, 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')")
             ->orderBy('start_time')
             ->get();
-
-        if ($class_routines->isEmpty()) {
-            return "No class routine found for class ID: " . $student->class_id;
-        }
 
         return view('student.layouts.classroutine', compact('class_routines'));
     }

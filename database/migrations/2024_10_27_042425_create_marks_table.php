@@ -13,16 +13,23 @@ return new class extends Migration
     {
         Schema::create('marks', function (Blueprint $table) {
             $table->id();
-            $table->unsignedInteger('student_id');  // Student ID reference
-            $table->unsignedBigInteger('teacher_id');  // Teacher ID reference
-            $table->string('subject');  // Subject name
+            $table->unsignedBigInteger('student_id');  // FK -> students.id
+            $table->unsignedBigInteger('teacher_id');  // FK -> teachers.id
+            $table->unsignedBigInteger('subject_id');  // FK -> subjects.id
             $table->integer('marks');  // Marks given
             $table->text('remarks')->nullable();  // Optional remarks
             $table->timestamps();
 
             // Foreign Key Constraints
-            $table->foreign('student_id')->references('student_id')->on('allstudents')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreign('teacher_id')->references('id')->on('teachers')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('student_id')
+                ->references('id')->on('students')
+                ->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('teacher_id')
+                ->references('id')->on('teachers')
+                ->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreign('subject_id')
+                ->references('id')->on('subjects')
+                ->cascadeOnDelete()->cascadeOnUpdate();
         });
     }
 

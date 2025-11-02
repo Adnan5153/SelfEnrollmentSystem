@@ -1,82 +1,110 @@
 @extends('layouts.admin')
 @section('content')
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="card border-0 shadow-lg rounded-4">
+                <div
+                    class="card-header bg-dark bg-gradient text-white rounded-top-4 d-flex flex-wrap align-items-center justify-content-between gap-2">
+                    <div class="d-flex align-items-center gap-2 flex-wrap">
+                        <h5 class="mb-0 d-flex align-items-center gap-2">
+                            <i class="fa-solid fa-users"></i> Student List
+                        </h5>
+                    </div>
+                    <a href="{{ route('register.student.and.parent') }}"
+                        class="btn btn-success btn-sm rounded-pill shadow-sm">
+                        <i class="fa-solid fa-plus"></i> Add Student
+                    </a>
+                </div>
+                <div class="card-body bg-light rounded-bottom-4">
+                    {{-- Alerts --}}
+                    @if (session('success'))
+                        <div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
+                            <i class="fa-solid fa-circle-check me-2"></i>{{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
 
-<div class="container mt-5">
-    <div class="row g-3 justify-content-end" style="align-content: center;">
-        <div class="col-md-2">
-            <input type="text" class="form-control mb-3 p-1" style="border-radius: 20px; font-size:small;" placeholder="Search Roll Number">
-        </div>
-        <div class="col-md-2">
-            <input type="text" class="form-control mb-3 p-1" style="border-radius: 20px; font-size:small;" placeholder="Search Section">
-        </div>
-        <div class="col-md-2">
-            <button class="btn btn-primary btn-sm" style="border-radius: 20px;">Search Results</button>
+                    <div class="table-responsive rounded-4">
+                        <table class="table  align-middle mb-0 table-hover small">
+                            <thead class="table-info">
+                                <tr>
+                                    <th class="text-center text-black" style="width:4%;">#</th>
+                                    <th class="text-black">Student ID</th>
+                                    <th class="text-black">Name</th>
+                                    <th class="text-black">Gender</th>
+                                    <th class="text-black">Father's Name</th>
+                                    <th class="text-black">Mother's Name</th>
+                                    <th class="text-black">Class</th>
+                                    <th class="text-black">Section</th>
+                                    <th class="text-black">Address</th>
+                                    <th class="text-black">Date of Birth</th>
+                                    <th class="text-black">Phone No</th>
+                                    <th class="text-black">Email</th>
+                                    <th class="text-center text-black" style="width:8%;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($students as $student)
+                                    <tr>
+                                        <td class="text-center text-black fw-bold">{{ $loop->iteration }}</td>
+                                        <td class="text-black">{{ $student->student_id }}</td>
+                                        <td class="text-black">{{ $student->first_name }} {{ $student->last_name }}</td>
+                                        <td class="text-black">{{ $student->gender }}</td>
+                                        <td class="text-black">{{ optional($student->parent)->father_name ?? 'N/A' }}</td>
+                                        <td class="text-black">{{ optional($student->parent)->mother_name ?? 'N/A' }}</td>
+                                        <td class="text-black">{{ $student->class }}</td>
+                                        <td class="text-black">{{ $student->section }}</td>
+                                        <td class="text-black">{{ optional($student->parent)->present_address ?? 'N/A' }}
+                                        </td>
+                                        <td class="text-black">{{ $student->date_of_birth }}</td>
+                                        <td class="text-black">{{ optional($student->parent)->phone_number ?? 'N/A' }}</td>
+                                        <td class="text-black">{{ $student->email }}</td>
+                                        <td class="text-center">
+                                            <!-- Edit Modal Trigger -->
+                                            <button type="button"
+                                                class="btn btn-outline-warning btn-sm rounded-circle shadow-sm"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#editStudentModal-{{ $student->student_id }}"
+                                                title="Edit Student">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </button>
+                                            <!-- Delete -->
+                                            <form action="{{ route('allstudent.destroy', $student->student_id) }}"
+                                                method="POST" class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="btn btn-outline-danger btn-sm rounded-circle shadow-sm ms-1"
+                                                    onclick="return confirm('Are you sure you want to delete this student?')"
+                                                    title="Delete Student">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="13" class="text-center text-black-50">No students found.</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+
+                    {{-- Pagination --}}
+                    <div class="d-flex justify-content-center mt-4">
+                        {{ $students->links() }}
+                    </div>
+
+                    {{-- Edit modals --}}
+                    @foreach ($students as $student)
+                        @include('admin.layouts.modal.edit', [
+                            'student' => $student,
+                            'parent' => $student->parent,
+                        ])
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
-
-    <!-- Responsive table container -->
-    <div class="table-responsive">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th class="font">Student ID</th>
-                    <th class="font">Name</th>
-                    <th class="font">Gender</th>
-                    <th class="font">Father's Name</th>
-                    <th class="font">Mother's Name</th>
-                    <th class="font">Class</th>
-                    <th class="font">Section</th>
-                    <th class="font">Address</th>
-                    <th class="font">Date of Birth</th>
-                    <th class="font">Phone no</th>
-                    <th class="font">E-mail</th>
-                    <th class="font">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($students as $student)
-                <tr class="font">
-                    <td>{{ $student->student_id }}</td>
-                    <td>{{ $student->first_name }} {{ $student->last_name }}</td>
-                    <td>{{ $student->gender }}</td>
-                    <td>{{ optional($student->parent)->father_name ?? 'N/A' }}</td>
-                    <td>{{ optional($student->parent)->mother_name ?? 'N/A' }}</td>
-                    <td>{{ $student->class }}</td>
-                    <td>{{ $student->section }}</td>
-                    <td>{{ optional($student->parent)->present_address ?? 'N/A' }}</td>
-                    <td>{{ $student->date_of_birth }}</td>
-                    <td>{{ optional($student->parent)->phone_number ?? 'N/A' }}</td>
-                    <td>{{ $student->email }}</td>
-                    <td>
-                        <!-- Button that triggers the modal -->
-                        <a href="#" class="btn btn-sm" data-bs-toggle="modal" data-bs-target="#editStudentModal-{{ $student->student_id }}">
-                            <i class="fa-solid fa-pen-to-square" style="color: #FFD43B;"></i>
-                        </a>
-
-                        <!-- Delete form -->
-                        <form action="{{ route('allstudent.destroy', $student->student_id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm" onclick="return confirm('Are you sure you want to delete this student?')">
-                                <i class="fa-solid fa-trash" style="color: #ff0000;"></i>
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-
-    <!-- Pagination Links -->
-    <div class="d-flex justify-content-center mt-4">
-        {{ $students->links() }}
-    </div>
-</div>
-
-<!-- Include the modal partial -->
-@foreach($students as $student)
-@include('admin.layouts.modal.edit', ['student' => $student, 'parent' => optional($student->parent)])
-@endforeach
-
 @endsection

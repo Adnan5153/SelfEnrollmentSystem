@@ -24,9 +24,9 @@ class AllTeacherController extends Controller
      * Update a specific teacher's details in the database.
      *
      * @param  Request  $request
-     * @param  string  $teacher_id_number
+     * @param  string  $id
      */
-    public function update(Request $request, $teacher_id_number)
+    public function update(Request $request, $id)
     {
         // Validation rules
         $validatedData = $request->validate([
@@ -34,13 +34,13 @@ class AllTeacherController extends Controller
             'last_name' => 'required|string|max:255',
             'class_id' => 'required|integer',
             'section' => 'required|string',
-            'subject' => 'required|string',
+            'department_id' => 'required|exists:departments,id',
             'gender' => 'required|string',
             'date_of_birth' => 'required|date',
             'joining_date' => 'required|date',
             'nid_number' => 'nullable|integer',
             'religion' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:allteachers,email,' . $teacher_id_number . ',teacher_id_number',
+            'email' => 'required|email|max:255|unique:allteachers,email,' . $id . ',id',
             'phone' => 'required|string|max:20',
             'address' => 'required|string|max:255',
         ]);
@@ -49,8 +49,8 @@ class AllTeacherController extends Controller
         $classData = ClassModel::findOrFail($validatedData['class_id']);
         $className = $classData->class_name;
 
-        // Find the teacher using teacher_id_number
-        $teacher = AllTeacher::findOrFail($teacher_id_number);
+        // Find the teacher using id
+        $teacher = AllTeacher::findOrFail($id);
 
         // Update teacher data
         $teacher->update($validatedData);
@@ -63,12 +63,12 @@ class AllTeacherController extends Controller
     /**
      * Remove a specific teacher from the database.
      *
-     * @param  string  $teacher_id_number
+     * @param  string  $id
      */
-    public function destroy($teacher_id_number)
+    public function destroy($id)
     {
         // Find and delete the teacher by their ID
-        $teacher = AllTeacher::findOrFail($teacher_id_number);
+        $teacher = AllTeacher::findOrFail($id);
         $teacher->delete();
 
         return redirect()->route('allteachers.index')->with('success', 'Teacher deleted successfully.');

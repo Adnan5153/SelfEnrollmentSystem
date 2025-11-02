@@ -4,30 +4,37 @@
 
 @php
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\ClassRoutine;
 use App\Models\AllStudent;
 
-// ✅ Get the logged-in teacher
 $teacher = Auth::user();
 
-// ✅ Fetch total classes assigned to this teacher
+// Total Classes Assigned (total subject routines)
 $totalClasses = ClassRoutine::where('teacher_id', $teacher->id)->count();
 
-// ✅ Fetch all class IDs where this teacher has classes
-$classIds = ClassRoutine::where('teacher_id', $teacher->id)
+// Get all subject_ids the teacher teaches via routines
+$subjectIds = ClassRoutine::where('teacher_id', $teacher->id)
+    ->pluck('subject_id')
+    ->unique()
+    ->toArray();
+
+// Get all class_ids for those subjects via class_subject pivot table
+$classIds = DB::table('class_subject')
+    ->whereIn('subject_id', $subjectIds)
     ->pluck('class_id')
     ->unique()
     ->filter()
     ->toArray();
 
-// ✅ Fetch total students in the teacher's classes
+// Total Students Under Supervision (all students from those classes)
 $totalStudents = !empty($classIds)
     ? AllStudent::whereIn('class_id', $classIds)->count()
     : 0;
 
-// ✅ Fetch upcoming classes today
+// Upcoming Classes Today (subject routines for today)
 $upcomingClassesToday = ClassRoutine::where('teacher_id', $teacher->id)
-    ->where('day_of_week', now()->format('l')) // Get today's day name
+    ->where('day_of_week', now()->format('l'))
     ->count();
 @endphp
 

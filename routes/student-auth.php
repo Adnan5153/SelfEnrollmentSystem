@@ -39,5 +39,5 @@ Route::middleware('auth:student')->prefix('student')->name('student.')->group(fu
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout'); // Logout
 
-    
+
 });
