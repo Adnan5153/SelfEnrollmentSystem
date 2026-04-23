@@ -24,15 +24,15 @@
             </div>
             <form action="{{ route('departments.store') }}" method="POST">
                 @csrf
-                <div class="mb-3 d-flex flex-column">
+                <div class="mb-3">
                     <h5 class="fw-semibold text-dark mb-2">Department Information</h5>
-                    <div class="row w-100">
-                        <div class="col-md-5">
+                    <div class="row">
+                        <div class="col-12 col-md-5">
                             <label for="name" class="form-label">Department Name</label>
                             <input type="text" class="form-control form-control-sm" id="name" name="name"
                                 placeholder="Enter department name" required>
                         </div>
-                        <div class="col-md-5">
+                        <div class="col-12 col-md-5">
                             <label for="code" class="form-label">Department Code</label>
                             <input type="text" class="form-control form-control-sm" id="code" name="code"
                                 placeholder="Enter department code (optional)">
@@ -42,6 +42,7 @@
                         <button type="submit" class="btn btn-primary btn-sm px-4 py-2 rounded-pill">Submit</button>
                         <button type="reset" class="btn btn-danger btn-sm px-4 py-2 rounded-pill">Reset</button>
                     </div>
+                </div>
             </form>
         </div>
     </div>

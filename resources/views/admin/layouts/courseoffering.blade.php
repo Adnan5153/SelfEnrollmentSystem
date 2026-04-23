@@ -3,7 +3,8 @@
 @section('content')
 
     <!-- Offer Subjects to Class Form -->
-    <div class="bg-light p-3 rounded-3 shadow-sm mb-4 mt-5">
+    <div class="bg-light p-3 p-md-4 rounded-3 shadow-sm mb-4 mt-5">
+        <!-- Success Alert -->
         @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('success') }}
@@ -11,9 +12,10 @@
             </div>
         @endif
 
+        <!-- Error Alert -->
         @if ($errors->any())
             <div class="alert alert-danger">
-                <ul class="mb-0">
+                <ul class="mb-0 ps-3">
                     @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
                     @endforeach
@@ -21,26 +23,29 @@
             </div>
         @endif
 
-        <div class="text-center mb-3">
-            <h3 class="fw-bold text-dark">
+        <!-- Header -->
+        <div class="text-center mb-4">
+            <h3 class="fw-bold text-dark mb-1">
                 {{ isset($class) ? 'Update Subject Offerings' : 'Offer Subjects to Class' }}
             </h3>
-            <p class="text-secondary">
+            <p class="text-secondary mb-0">
                 {{ isset($class) ? 'Modify subjects offered to the selected class' : 'Select a class and assign the subjects it will offer to students' }}
             </p>
         </div>
 
+        <!-- Form -->
         <form action="{{ isset($class) ? route('courseoffering.update', $class->id) : route('courseoffering.store') }}"
             method="POST">
             @csrf
             @if (isset($class))
                 @method('PUT')
             @endif
-            <div class="mb-2">
-                <h5 class="fw-semibold text-dark mb-2">Course Offering Information</h5>
+
+            <div class="mb-3">
+                <h5 class="fw-semibold text-dark mb-3">Course Offering Information</h5>
                 <div class="row g-3">
                     <!-- Class Dropdown -->
-                    <div class="col-md-4">
+                    <div class="col-12 col-md-4">
                         <label for="class_id" class="form-label">Class</label>
                         <select class="form-select text-dark bg-white" id="class_id" name="class_id" required
                             {{ isset($class) ? 'disabled' : '' }}>
@@ -57,12 +62,12 @@
                         @endif
                     </div>
 
-                    <!-- Dual List Box -->
-                    <div class="col-md-8">
+                    <!-- Dual List Section -->
+                    <div class="col-12 col-md-8">
                         <label class="form-label">Subjects to Offer</label>
-                        <div class="row">
-                            <!-- Available Subjects with checkboxes -->
-                            <div class="col-md-5">
+                        <div class="row g-3">
+                            <!-- Available Subjects -->
+                            <div class="col-12 col-md-5">
                                 <input type="text" class="form-control mb-2" id="searchSubjects"
                                     placeholder="Search subjects...">
                                 <div class="list-group" id="availableSubjects" style="max-height: 200px; overflow-y: auto;">
@@ -84,9 +89,10 @@
                                 </div>
                             </div>
 
-                            <!-- Buttons -->
-                            <div class="col-md-2 d-flex flex-column justify-content-center align-items-center">
-                                <button type="button" class="btn btn-outline-primary mb-2 w-100"
+                            <!-- Transfer Buttons -->
+                            <div
+                                class="col-12 col-md-2 d-flex flex-md-column flex-row justify-content-center align-items-center gap-2">
+                                <button type="button" class="btn btn-outline-primary w-100"
                                     onclick="moveCheckedSubjects()">
                                     <i class="fa fa-arrow-right"></i>
                                 </button>
@@ -97,9 +103,11 @@
                             </div>
 
                             <!-- Selected Subjects -->
-                            <div class="col-md-5">
-                                <label class="form-label">Subjects Selected <small class="text-muted">(Ctrl+Click to select
-                                        multiple for removal)</small></label>
+                            <div class="col-12 col-md-5">
+                                <label class="form-label d-block">
+                                    Subjects Selected
+                                    <small class="text-muted d-block">(Ctrl + Click to select multiple for removal)</small>
+                                </label>
                                 <select multiple class="form-select" id="selectedSubjects" name="subject_ids[]"
                                     size="10">
                                     @if (isset($offered_subjects))
@@ -116,26 +124,32 @@
                 </div>
             </div>
 
-            <!-- Submit -->
+            <!-- Submit Buttons -->
             <div class="text-center mt-4">
                 <button type="submit" class="btn btn-primary px-4 py-2 rounded-pill">
                     {{ isset($class) ? 'Update' : 'Submit' }}
                 </button>
-                <button type="reset" class="btn btn-danger px-4 py-2 rounded-pill"
-                    onclick="location.reload()">Reset</button>
+                <button type="reset" class="btn btn-danger px-4 py-2 rounded-pill" onclick="location.reload()">
+                    Reset
+                </button>
                 @if (isset($class))
-                    <a href="{{ route('courseoffering.index') }}"
-                        class="btn btn-secondary px-4 py-2 rounded-pill">Cancel</a>
+                    <a href="{{ route('courseoffering.index') }}" class="btn btn-secondary px-4 py-2 rounded-pill">
+                        Cancel
+                    </a>
                 @endif
             </div>
         </form>
     </div>
 
+
     <!-- Offered Subjects Table -->
     <div class="card shadow-lg border-0 rounded-4 mt-4">
-        <div class="card-header bg-dark text-white rounded-top-4 border-0 py-3 px-4 d-flex justify-content-between align-items-center">
-            <h5 class="mb-0 fw-semibold"><i class="fa-solid fa-table-list me-2"></i>Offered Subjects Table</h5>
-            <div class="d-flex align-items-center gap-2">
+        <div
+            class="card-header bg-dark text-white rounded-top-4 border-0 py-3 px-3 px-md-4 d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2">
+            <h5 class="mb-0 fw-semibold text-center text-md-start">
+                <i class="fa-solid fa-table-list me-2"></i>Offered Subjects Table
+            </h5>
+            <div class="d-flex flex-wrap justify-content-center align-items-center gap-2">
                 <label for="classFilter" class="mb-0 small text-white-50">Filter by Class:</label>
                 <select id="classFilter" class="form-select form-select-sm w-auto">
                     <option value="all">All Classes</option>
@@ -145,7 +159,8 @@
                 </select>
             </div>
         </div>
-        <div class="card-body bg-light rounded-bottom-4 p-4">
+
+        <div class="card-body bg-light rounded-bottom-4 p-3 p-md-4">
             <div class="table-responsive">
                 <table class="table table-hover align-middle mb-0" id="offeredSubjectsTable">
                     <thead class="table-primary">
@@ -169,41 +184,47 @@
                             @endphp
                             <tr class="offering-row {{ $rowClass }}" data-class-id="{{ $offering->class_id ?? '' }}">
                                 <td class="text-center">{{ $index + 1 }}</td>
-                                <td>
-                                    <span class="badge bg-info text-white">{{ $offering->class?->class_name ?? 'N/A' }}</span>
+                                <td><span
+                                        class="badge bg-info text-white">{{ $offering->class?->class_name ?? 'N/A' }}</span>
                                 </td>
-                                <td class="fw-semibold">{{ $offering->subject?->name ?? 'N/A' }}</td>
+                                <td class="fw-semibold text-wrap">{{ $offering->subject?->name ?? 'N/A' }}</td>
                                 <td class="text-center">
-                                    <span class="badge bg-secondary-subtle text-secondary-emphasis">{{ $offering->subject?->subject_code ?? 'N/A' }}</span>
+                                    <span
+                                        class="badge bg-secondary-subtle text-secondary-emphasis">{{ $offering->subject?->subject_code ?? 'N/A' }}</span>
                                 </td>
                                 <td class="text-center">{{ $offering->subject?->year ?? 'N/A' }}</td>
-                                <td class="text-center">{{ $offering->subject?->department?->name ?? 'N/A' }}</td>
+                                <td class="text-center text-wrap">{{ $offering->subject?->department?->name ?? 'N/A' }}
+                                </td>
                                 <td class="text-center">
                                     <span class="badge bg-primary text-white">
-                                        {{ $offering->credit_hour ?? $offering->subject?->credit?->credit_hour ?? '0' }}
+                                        {{ $offering->credit_hour ?? ($offering->subject?->credit?->credit_hour ?? '0') }}
                                     </span>
                                 </td>
                                 <td class="text-center">
                                     @php
                                         $type = strtolower($offering->subject?->credit?->subject_type ?? 'theory');
                                     @endphp
-                                    <span class="badge {{ $type === 'lab' ? 'bg-success-subtle text-success-emphasis' : 'bg-info-subtle text-info-emphasis' }}">
+                                    <span
+                                        class="badge {{ $type === 'lab' ? 'bg-success-subtle text-success-emphasis' : 'bg-info-subtle text-info-emphasis' }}">
                                         {{ ucfirst($type) }}
                                     </span>
                                 </td>
                                 <td class="text-center">
-                                    <span class="badge {{ $offering->enforce_prereq ? 'bg-success-subtle text-success-emphasis' : 'bg-secondary-subtle text-secondary-emphasis' }}">
+                                    <span
+                                        class="badge {{ $offering->enforce_prereq ? 'bg-success-subtle text-success-emphasis' : 'bg-secondary-subtle text-secondary-emphasis' }}">
                                         {{ $offering->enforce_prereq ? 'Yes' : 'No' }}
                                     </span>
                                 </td>
                                 <td class="text-end">
-                                    <div class="d-inline-flex gap-1">
-                                        <form method="POST" action="{{ route('courseoffering.selected.delete', $offering->id) }}"
-                                            class="d-inline" 
+                                    <div class="d-inline-flex flex-wrap gap-1 justify-content-end">
+                                        <form method="POST"
+                                            action="{{ route('courseoffering.selected.delete', $offering->id) }}"
+                                            class="d-inline"
                                             onsubmit="return confirm('Are you sure you want to remove this offering?');">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-outline-danger" title="Remove Offering">
+                                            <button type="submit" class="btn btn-sm btn-outline-danger"
+                                                title="Remove Offering">
                                                 <i class="fa-solid fa-trash"></i>
                                             </button>
                                         </form>
@@ -219,10 +240,11 @@
                             </tr>
                         @endforelse
                     </tbody>
+
                     @if (isset($offerings) && $offerings->count() > 0)
                         @php
-                            $totalCredits = $offerings->sum(function($o) {
-                                return (float) ($o->credit_hour ?? $o->subject?->credit?->credit_hour ?? 0);
+                            $totalCredits = $offerings->sum(function ($o) {
+                                return (float) ($o->credit_hour ?? ($o->subject?->credit?->credit_hour ?? 0));
                             });
                         @endphp
                         <tfoot class="table-secondary">
@@ -237,6 +259,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- JavaScript -->
     <script>
@@ -348,9 +371,10 @@
                         row.style.display = shouldShow ? '' : 'none';
                         if (shouldShow) visibleCount++;
                     });
-                    
+
                     // Update empty message visibility
-                    const emptyRow = document.querySelector('#offeredSubjectsTable tbody tr td[colspan="10"]');
+                    const emptyRow = document.querySelector(
+                        '#offeredSubjectsTable tbody tr td[colspan="10"]');
                     if (emptyRow && emptyRow.closest('tr')) {
                         emptyRow.closest('tr').style.display = visibleCount === 0 ? '' : 'none';
                     }

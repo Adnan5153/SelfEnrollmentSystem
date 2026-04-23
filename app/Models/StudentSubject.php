@@ -15,6 +15,12 @@ class StudentSubject extends Model
     protected $table = 'student_subject';
 
     /**
+     * Indicates if the model should be timestamped.
+     * The pivot table has timestamps, so we enable them.
+     */
+    public $timestamps = true;
+
+    /**
      * The attributes that are mass assignable.
      */
     protected $fillable = [

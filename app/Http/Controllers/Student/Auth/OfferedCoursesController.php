@@ -17,8 +17,10 @@ class OfferedCoursesController extends Controller
             ->with(['prerequisites', 'credit', 'class_routines.teacher'])
             ->get();
 
-        // Calculate current semester credit load for the student
-        $currentSemesterCredits = $this->calculateCurrentSemesterCredits($student);
+        // For offered courses page, current credits should always start at 0
+        // This represents credits being selected in the current session only
+        // The actual enrolled credits are shown in the "My Enrolled Courses" page
+        $currentSemesterCredits = 0;
 
         // Add credit information and eligibility to each subject
         $subjects->each(function ($subject) use ($student) {
@@ -34,21 +36,18 @@ class OfferedCoursesController extends Controller
 
     /**
      * Calculate current semester credit load for the student
-     * Only counts credits from subjects the student is currently enrolled in (pivot table), not passed!
+     * For the offered courses page, this should always return 0 after enrollment
+     * The actual enrolled credits are shown in the "My Enrolled Courses" page
+     * This allows students to see pending selections without counting already enrolled courses
      *
      * @param \App\Models\Student $student
      * @return float
      */
     private function calculateCurrentSemesterCredits($student)
     {
-        $subjects = $student->subjects()->with('credit')->get();
-        $totalCredits = 0;
-        foreach ($subjects as $subject) {
-            if ($subject->credit) {
-                $totalCredits += (float) $subject->credit->credit_hour;
-            }
-        }
-        return $totalCredits;
+        // Always return 0 for the offered courses page
+        // The enrolled credits are displayed in the "My Enrolled Courses" page instead
+        return 0;
     }
 
     /**

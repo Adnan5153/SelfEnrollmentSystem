@@ -25,7 +25,7 @@
                     @endif
 
                     <div class="table-responsive rounded-4">
-                        <table class="table  align-middle mb-0 table-hover small">
+                        <table class="table table-sm align-middle mb-0 table-hover">
                             <thead class="table-info">
                                 <tr>
                                     <th class="text-center text-black" style="width:4%;">#</th>
@@ -40,13 +40,17 @@
                                     <th class="text-black">Date of Birth</th>
                                     <th class="text-black">Phone No</th>
                                     <th class="text-black">Email</th>
-                                    <th class="text-center text-black" style="width:8%;">Actions</th>
+                                    <th class="text-center text-black text-nowrap" style="width:8%;">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse ($students as $student)
                                     <tr>
-                                        <td class="text-center text-black fw-bold">{{ $loop->iteration }}</td>
+                                        {{-- Keep numbering correct across paginated pages --}}
+                                        <td class="text-center text-black fw-bold">
+                                            {{ ($students->firstItem() ?? 1) + $loop->index }}
+                                        </td>
+
                                         <td class="text-black">{{ $student->student_id }}</td>
                                         <td class="text-black">{{ $student->first_name }} {{ $student->last_name }}</td>
                                         <td class="text-black">{{ $student->gender }}</td>
@@ -54,12 +58,12 @@
                                         <td class="text-black">{{ optional($student->parent)->mother_name ?? 'N/A' }}</td>
                                         <td class="text-black">{{ $student->class }}</td>
                                         <td class="text-black">{{ $student->section }}</td>
-                                        <td class="text-black">{{ optional($student->parent)->present_address ?? 'N/A' }}
-                                        </td>
+                                        <td class="text-black">{{ optional($student->parent)->present_address ?? 'N/A' }}</td>
                                         <td class="text-black">{{ $student->date_of_birth }}</td>
                                         <td class="text-black">{{ optional($student->parent)->phone_number ?? 'N/A' }}</td>
                                         <td class="text-black">{{ $student->email }}</td>
-                                        <td class="text-center">
+
+                                        <td class="text-center text-nowrap">
                                             <!-- Edit Modal Trigger -->
                                             <button type="button"
                                                 class="btn btn-outline-warning btn-sm rounded-circle shadow-sm"
@@ -91,9 +95,9 @@
                         </table>
                     </div>
 
-                    {{-- Pagination --}}
+                    {{-- Pagination: ensure Bootstrap 5 renderer to avoid UI clash --}}
                     <div class="d-flex justify-content-center mt-4">
-                        {{ $students->links() }}
+                        {{ $students->withQueryString()->onEachSide(1)->links('pagination::bootstrap-5') }}
                     </div>
 
                     {{-- Edit modals --}}

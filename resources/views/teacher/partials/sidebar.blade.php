@@ -331,7 +331,7 @@
                         </ul>
                     </li>
 
-                    <!-- Student Progress -->
+                    {{-- <!-- Student Progress -->
                     <li class="sidebar-item">
                         <a href="#" class="sidebar-link collapsed shadow" data-bs-toggle="collapse"
                             data-bs-target="#studentProgress" aria-expanded="false">
@@ -344,7 +344,7 @@
                             <li class="sidebar-item"><a href="{{ route('teacher.remarks') }}"
                                     class="sidebar-link">Remarks</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
 
                     <!-- Messages -->
                     {{-- <li class="sidebar-item">

@@ -56,7 +56,15 @@ class MarkController extends Controller
             Log::info("Credit sync for student {$student->name} (ID: {$student->id}): Result given for {$subject->name} (failed). Credits recalculated from all passed subjects: {$oldCredits} -> {$newCredits}");
         }
 
-        return redirect()->route('teacher.addmarks')->with('success', 'Marks have been successfully added.');
+        // Check if all enrolled courses have received marks and clear enrollments if needed
+        $enrollmentsCleared = $student->checkAndClearCompletedEnrollments();
+        
+        $successMessage = 'Marks have been successfully added.';
+        if ($enrollmentsCleared) {
+            $successMessage .= ' All enrolled courses for this student have been graded. Enrollments have been cleared for next semester.';
+        }
+
+        return redirect()->route('teacher.addmarks')->with('success', $successMessage);
     }
 
     public function fetchStudents(Request $request)

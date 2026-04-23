@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Facades\Log;
 
 
 
@@ -41,7 +42,8 @@ class Student extends Authenticatable
 
     public function subjects()
     {
-        return $this->belongsToMany(Subject::class, 'student_subject', 'student_id', 'subject_id');
+        return $this->belongsToMany(Subject::class, 'student_subject', 'student_id', 'subject_id')
+            ->withTimestamps(); // Enable timestamps for the pivot table
     }
 
     public function marks()
@@ -185,5 +187,47 @@ class Student extends Authenticatable
         }
 
         return array_unique($passedSubjectIds);
+    }
+
+    /**
+     * Check if all enrolled courses have received marks (passing or failing)
+     * If yes, clear the enrollments to allow new course enrollment
+     * @return bool Returns true if enrollments were cleared, false otherwise
+     */
+    public function checkAndClearCompletedEnrollments()
+    {
+        // Get all currently enrolled subject IDs
+        $enrolledSubjectIds = $this->subjects()->pluck('subjects.id')->toArray();
+        
+        // If no enrollments, nothing to clear
+        if (empty($enrolledSubjectIds)) {
+            return false;
+        }
+        
+        // Get subject IDs that have received marks (any grade)
+        $markedSubjectIds = $this->marks()
+            ->whereIn('subject_id', $enrolledSubjectIds)
+            ->pluck('subject_id')
+            ->unique()
+            ->toArray();
+        
+        // Check if all enrolled subjects have marks
+        $allSubjectsMarked = count($enrolledSubjectIds) === count($markedSubjectIds);
+        
+        if ($allSubjectsMarked) {
+            // All enrolled courses have received marks, clear enrollments
+            $this->subjects()->detach();
+            
+            Log::info("Cleared enrollments for student", [
+                'student_id' => $this->id,
+                'student_name' => $this->name,
+                'cleared_subjects' => $enrolledSubjectIds,
+                'reason' => 'All enrolled courses received marks'
+            ]);
+            
+            return true;
+        }
+        
+        return false;
     }
 }

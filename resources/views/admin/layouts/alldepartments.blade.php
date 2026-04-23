@@ -41,25 +41,27 @@
                                         <td class="text-black fw-semibold">{{ $department->name }}</td>
                                         <td class="text-black fw-semibold">{{ $department->code ?? 'N/A' }}</td>
                                         <td class="text-center">
-                                            <!-- Edit Modal Trigger (implement modal if needed) -->
-                                            <a href="#"
-                                                class="btn btn-outline-warning btn-sm rounded-circle shadow-sm me-1"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#editDepartmentModal-{{ $department->id }}"
-                                                title="Edit Department">
-                                                <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                            <!-- Delete -->
-                                            <form action="{{ route('departments.destroy', $department->id) }}"
-                                                method="POST" class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"
-                                                    class="btn btn-outline-danger btn-sm rounded-circle shadow-sm"
-                                                    onclick="return confirm('Are you sure?')" title="Delete Department">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </button>
-                                            </form>
+                                            <div class="d-flex justify-content-center gap-1">
+                                                <!-- Edit Modal Trigger (implement modal if needed) -->
+                                                <a href="#"
+                                                    class="btn btn-outline-warning btn-sm rounded-circle shadow-sm"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#editDepartmentModal-{{ $department->id }}"
+                                                    title="Edit Department">
+                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                </a>
+                                                <!-- Delete -->
+                                                <form action="{{ route('departments.destroy', $department->id) }}"
+                                                    method="POST" class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"
+                                                        class="btn btn-outline-danger btn-sm rounded-circle shadow-sm"
+                                                        onclick="return confirm('Are you sure?')" title="Delete Department">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                 @endforeach

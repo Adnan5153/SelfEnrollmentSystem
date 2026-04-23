@@ -2,6 +2,31 @@
 
 @section('content')
     <div class="container-lg py-4">
+        {{-- Success/Error Messages --}}
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show shadow-sm rounded-3 border-0" role="alert">
+                <i class="fa-solid fa-circle-check me-2"></i>
+                <strong>Success!</strong> {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        
+        @if (session('error'))
+            <div class="alert alert-danger alert-dismissible fade show shadow-sm rounded-3 border-0" role="alert">
+                <i class="fa-solid fa-circle-exclamation me-2"></i>
+                <strong>Error!</strong> {{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        
+        @if (session('info'))
+            <div class="alert alert-info alert-dismissible fade show shadow-sm rounded-3 border-0" role="alert">
+                <i class="fa-solid fa-circle-info me-2"></i>
+                <strong>Info:</strong> {{ session('info') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        
         <div class="d-flex align-items-center justify-content-between mb-4">
             <h3 class="fw-bold mb-0">
                 <i class="fa-solid fa-layer-group me-2 text-success"></i>
@@ -225,21 +250,26 @@
 
             // Credit limit constants
             const MAX_CREDITS = 15;
-            const currentCredits = {{ $currentSemesterCredits }};
+            const currentCredits = {{ $currentSemesterCredits }}; // This is always 0 on this page
             let selectedCredits = 0;
 
             // Update credit display
             function updateCreditDisplay() {
                 const creditDisplay = document.querySelector('.fw-bold.text-primary.fs-5');
                 const progressBar = document.querySelector('.progress-bar');
-                let extraCredits = 0;
+                
+                // Calculate credits from ONLY non-disabled (not yet enrolled) checked courses
+                // This shows pending selections only
+                let pendingCredits = 0;
                 document.querySelectorAll('.course-checkbox:not([disabled]):checked').forEach(cb => {
                     const row = cb.closest('tr');
                     const creditsCell = row.querySelector('td:nth-child(4) .badge');
                     const courseCredits = parseFloat(creditsCell.textContent) || 0;
-                    extraCredits += courseCredits;
+                    pendingCredits += courseCredits;
                 });
-                const totalCredits = currentCredits + extraCredits;
+                
+                // Total credits = pending selections only (currentCredits is always 0)
+                const totalCredits = pendingCredits;
 
                 if (creditDisplay) {
                     creditDisplay.textContent = `${totalCredits}/15`;
@@ -260,7 +290,7 @@
 
             // Check if adding a course would exceed credit limit
             function canAddCourse(credits) {
-                return (currentCredits + selectedCredits + credits) <= MAX_CREDITS;
+                return (selectedCredits + credits) <= MAX_CREDITS;
             }
 
             // Course selection button (toggle only if not confirmed)
@@ -353,7 +383,7 @@
                     return;
                 }
 
-                // Validate credit limit
+                // Validate credit limit for pending selections
                 let totalSelectedCredits = 0;
                 selectedCheckboxes.forEach(checkbox => {
                     const row = checkbox.closest('tr');
@@ -362,9 +392,9 @@
                     totalSelectedCredits += courseCredits;
                 });
 
-                if (currentCredits + totalSelectedCredits > MAX_CREDITS) {
+                if (totalSelectedCredits > MAX_CREDITS) {
                     alert(
-                        `Cannot enroll in selected courses. Total credits (${currentCredits + totalSelectedCredits}) would exceed the 15 credit limit.`
+                        `Cannot enroll in selected courses. Total credits (${totalSelectedCredits}) would exceed the 15 credit limit.`
                     );
                     return;
                 }
@@ -404,8 +434,36 @@
 
             // Final submit from modal
             document.getElementById('enroll-final-submit-btn').addEventListener('click', function() {
+                // Debug: Log what will be submitted
+                const formData = new FormData(enrollForm);
+                const selectedCourses = formData.getAll('selected_courses[]');
+                console.log('Submitting courses:', selectedCourses);
+                console.log('Number of courses:', selectedCourses.length);
+                
+                // Check if any courses are selected
+                if (selectedCourses.length === 0) {
+                    alert('No courses selected for enrollment!');
+                    return;
+                }
+                
+                // Disable the button to prevent double submission
+                this.disabled = true;
+                this.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enrolling...';
                 enrollForm.submit();
             });
+            
+            // Initialize credit display on page load to ensure it shows correct values
+            // This ensures the display matches the server-side calculated credits
+            updateCreditDisplay();
+            
+            // Auto-dismiss success/error alerts after 5 seconds
+            setTimeout(function() {
+                const alerts = document.querySelectorAll('.alert');
+                alerts.forEach(alert => {
+                    const bsAlert = new bootstrap.Alert(alert);
+                    bsAlert.close();
+                });
+            }, 5000);
         });
     </script>
 @endpush

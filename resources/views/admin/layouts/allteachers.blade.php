@@ -26,7 +26,7 @@
         </div>
         <div class="card-body bg-light rounded-bottom-4">
             <div class="table-responsive">
-                <table class="table table-hover align-middle mb-0 rounded-3 overflow-hidden">
+                <table class="table table-sm table-hover align-middle mb-0 rounded-3 overflow-hidden">
                     <thead class="table-info">
                         <tr>
                             <th class="text-black text-center" style="width: 5%;">ID</th>
@@ -39,7 +39,7 @@
                             <th class="text-black">Date of Birth</th>
                             <th class="text-black">Phone No</th>
                             <th class="text-black">E-mail</th>
-                            <th class="text-center text-black" style="width: 7%;">Action</th>
+                            <th class="text-center text-black text-nowrap" style="width: 7%;">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,7 +55,7 @@
                                 <td class="text-black">{{ $teacher->date_of_birth }}</td>
                                 <td class="text-black">{{ $teacher->phone }}</td>
                                 <td class="text-black">{{ $teacher->email }}</td>
-                                <td class="text-center">
+                                <td class="text-center text-nowrap">
                                     <!-- Edit Button -->
                                     <a href="#" class="btn btn-outline-warning btn-sm rounded-circle shadow-sm"
                                         data-bs-toggle="modal"
@@ -88,11 +88,10 @@
 
             <!-- Pagination -->
             <div class="d-flex justify-content-center mt-4">
-                {{ $teachers->links() }}
+                {{ $teachers->withQueryString()->onEachSide(1)->links('pagination::bootstrap-5') }}
             </div>
         </div>
     </div>
-
 
     <!-- Include the modal partial for each teacher -->
     @foreach ($teachers as $teacher)

@@ -100,7 +100,8 @@ class Subject extends Model
      */
     public function students()
     {
-        return $this->belongsToMany(Student::class, 'student_subject');
+        return $this->belongsToMany(Student::class, 'student_subject', 'subject_id', 'student_id')
+            ->withTimestamps(); // Enable timestamps for the pivot table
     }
 
     /*

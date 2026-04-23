@@ -47,7 +47,7 @@
                             </h5>
                             <div class="row g-3">
                                 <!-- Select Class -->
-                                <div class="col-md-4">
+                                <div class="col-12 col-md-4">
                                     <label for="class_id" class="form-label small">Select Class</label>
                                     <select class="form-select form-select-sm rounded-3 shadow-sm" id="class_id" name="class_id" required>
                                         <option value="" selected disabled>Select a class</option>
@@ -57,7 +57,7 @@
                                     </select>
                                 </div>
                                 <!-- Select Subject (ALL subjects, not filtered by class) -->
-                                <div class="col-md-4">
+                                <div class="col-12 col-md-4">
                                     <label for="subject_id" class="form-label small">Select Subject</label>
                                     <select class="form-select form-select-sm rounded-3 shadow-sm" id="subject_id" name="subject_id" required>
                                         <option value="" selected disabled>Select a subject</option>
@@ -67,22 +67,22 @@
                                     </select>
                                 </div>
                                 <!-- Exam Date -->
-                                <div class="col-md-4">
+                                <div class="col-12 col-md-4">
                                     <label for="exam_date" class="form-label small">Exam Date</label>
                                     <input type="date" class="form-control form-control-sm rounded-3 shadow-sm" id="exam_date" name="exam_date" required>
                                 </div>
                                 <!-- Start Time -->
-                                <div class="col-md-4">
+                                <div class="col-12 col-md-4">
                                     <label for="start_time" class="form-label small">Start Time</label>
                                     <input type="time" class="form-control form-control-sm rounded-3 shadow-sm" id="start_time" name="start_time" required>
                                 </div>
                                 <!-- End Time -->
-                                <div class="col-md-4">
+                                <div class="col-12 col-md-4">
                                     <label for="end_time" class="form-label small">End Time</label>
                                     <input type="time" class="form-control form-control-sm rounded-3 shadow-sm" id="end_time" name="end_time" required>
                                 </div>
                                 <!-- Room Number -->
-                                <div class="col-md-4">
+                                <div class="col-12 col-md-4">
                                     <label for="room_number" class="form-label small">Room Number (Optional)</label>
                                     <input type="text" class="form-control form-control-sm rounded-3 shadow-sm" id="room_number" name="room_number" placeholder="Enter room number">
                                 </div>
